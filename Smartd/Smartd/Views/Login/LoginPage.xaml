@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ex="clr-namespace:Smartd.Bibliotecas.Extensions" 
+             xmlns:controls="clr-namespace:Smartd.Bibliotecas.Controls"
+             xmlns:behaviors="clr-namespace:Smartd.Bibliotecas.Behaviors"
+             xmlns:behaviorPack="clr-namespace:Xamarin.Forms.BehaviorValidationPack;assembly=Xamarin.Forms.BehaviorValidationPack"
+             xmlns:ef="clr-namespace:Smartd.Bibliotecas.Effects" 
+             mc:Ignorable="d"
+             x:Class="Smartd.Views.Login.LoginPage"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+             Visual="Material"
+             BackgroundImageSource="{ex:ImageResource Source=Smartd.Content.Images.background.png}">
+
+    <ContentPage.Content>
+        <Grid>
+            <ScrollView Opacity="{Binding Path=IsBusy, Converter={StaticResource Key=loadingConverter}}" 
+                        VerticalOptions="FillAndExpand">
+                <StackLayout Padding="50,15">
+                    <Grid HorizontalOptions="CenterAndExpand" Margin="0,90,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="180" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{ex:ImageResource Source=Smartd.Content.Images.logo.png}" />
+                    </Grid>
+                    
+                    <StackLayout Margin="0,10,0,0" 
+                                 VerticalOptions="CenterAndExpand"
+                                 Spacing="20">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            
+                            <Frame Padding="0" 
+                                   Margin="0" 
+                                   BorderColor="#fbfbfb" 
+                                   BackgroundColor="Transparent" 
+                                   HasShadow="False"  
+                                   CornerRadius="100">
+                                <StackLayout VerticalOptions="CenterAndExpand" 
+                                             HorizontalOptions="FillAndExpand"
+                                             Orientation="Horizontal">
+                                    <Grid Margin="10,0,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="25" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{ex:ImageResource Source=Smartd.Content.Images.user.png}"/>
+                                    </Grid>
+
+                                    <controls:EntryLight Placeholder="digite o seu CPF" 
+                                                         FontSize="16" 
+                                                         PlaceholderColor="#FFFFFF"
+                                                         TextColor="#FFFFFF"
+                                                         BackgroundColor="Transparent" 
+                                                         ReturnType="Next" 
+                                                         Keyboard="Numeric"
+                                                         Text="{Binding Path=Dados.Login.Value}"
+                                                         HorizontalOptions="FillAndExpand"
+                                                         VerticalOptions="Center">
+                                        <controls:EntryLight.Behaviors>
+                                            <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                                              Command="{Binding Path=cmdValidarLogin}" />
+                                            <behaviorPack:MaskedBehavior Mask="XXX.XXX.XXX-XX" />
+                                        </controls:EntryLight.Behaviors>
+                                    </controls:EntryLight>
+                                </StackLayout>
+                            </Frame>
+
+                            <Label Text="{Binding Path=Dados.Login.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                                   IsVisible="{Binding Path=Dados.Login.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                                   Style="{StaticResource Key=ValidationErrorLabelStyle}"
+                                   Grid.Row="1"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            
+                            <Frame Padding="0" 
+                                   Margin="0" 
+                                   BorderColor="#fbfbfb" 
+                                   BackgroundColor="Transparent" 
+                                   HasShadow="False" 
+                                   CornerRadius="40">
+                                <StackLayout VerticalOptions="CenterAndExpand" 
+                                             HorizontalOptions="FillAndExpand" 
+                                             Orientation="Horizontal"
+                                             Margin="5,0,0,0">
+                                    <Grid Margin="10,0,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="20" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{ex:ImageResource Source=Smartd.Content.Images.password.png}"/>
+                                    </Grid>
+                                    
+                                    <controls:EntryLight Placeholder="digite sua senha" 
+                                                         PlaceholderColor="#FFFFFF"
+                                                         FontSize="16"
+                                                         TextColor="#FFFFFF"
+                                                         BackgroundColor="Transparent" 
+                                                         ReturnType="Done" 
+                                                         Text="{Binding Path=Dados.Senha.Value}"
+                                                         IsPassword="True"
+                                                         HorizontalOptions="FillAndExpand"
+                                                         Margin="0,0,10,0"
+                                                         VerticalOptions="Center">
+                                        <controls:EntryLight.Behaviors>
+                                            <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                                              Command="{Binding Path=cmdValidarSenha}" />
+                                        </controls:EntryLight.Behaviors>
+                                        <controls:EntryLight.Effects>
+                                            <ef:ShowHidePassEffect />
+                                        </controls:EntryLight.Effects>
+
+                                    </controls:EntryLight>
+                                </StackLayout>
+                            </Frame>
+                            <Label Text="{Binding Dados.Senha.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                                   IsVisible="{Binding Path=Dados.Senha.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                                   Style="{StaticResource Key=ValidationErrorLabelStyle}"
+                                   Grid.Row="1"/>
+                        </Grid>
+
+                        <StackLayout>
+                            <Button Text="entrar" 
+                                    TextColor="#6FB6DC" 
+                                    FontSize="16" 
+                                    FontAttributes="Bold"
+                                    BackgroundColor="#FFFFFF" 
+                                    CornerRadius="20" 
+                                    Command="{Binding Path=cmdEntrar}"/>
+                            
+                            <StackLayout Padding="0,5,0,0" HorizontalOptions="CenterAndExpand" Spacing="15">
+                                <Label HorizontalOptions="CenterAndExpand" 
+                                       FontSize="14" 
+                                       Text="esqueci minha senha" 
+                                       Padding="5,3"
+                                       TextColor="#FFFFFF">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=cmdEsqueciSenha}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                
+                                <BoxView BackgroundColor="#FFFFFF" HeightRequest="1"/>
+                                
+                                <Label HorizontalOptions="CenterAndExpand" 
+                                       FontSize="14" 
+                                       Padding="5,3"
+                                       Text="É novo aqui? Então faça seu cadastro!" 
+                                       TextColor="#FFFFFF">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=cmdCadastro}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                            
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+            
+            <ContentView IsVisible="{Binding Path=IsBusy}" 
+                         HorizontalOptions="FillAndExpand" 
+                         VerticalOptions="FillAndExpand">
+                <Frame BackgroundColor="White" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center" 
+                       CornerRadius="10" 
+                       BorderColor="LightGray"
+                       HasShadow="True"
+                       Padding="30">
+                    <StackLayout>
+                        <ActivityIndicator IsRunning="{Binding Path=IsBusy}" 
+                                           IsVisible="{Binding Path=IsBusy}"
+                                           Visual="Material"
+                                           Color="{StaticResource Key=PrimaryColor}"/>
+                        <Label Text="Aguarde" 
+                               FontSize="17" 
+                               HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </Frame>
+            </ContentView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ex="clr-namespace:Smartd.Bibliotecas.Extensions"
+             xmlns:controls="clr-namespace:Smartd.Bibliotecas.Controls"
+             mc:Ignorable="d"
+             x:Class="Smartd.Views.Login.EmailPage"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+             BackgroundImageSource="{ex:ImageResource Smartd.Content.Images.background.png}">
+    
+    
+    <ContentPage.Content>
+        <StackLayout Margin="30,200,30,0" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Spacing="20">
+            <StackLayout   Spacing="15">
+                <Image Source="{ex:ImageResource Smartd.Content.Images.mail.png}" 
+                               WidthRequest="50" 
+                               HeightRequest="50"
+                               HorizontalOptions="CenterAndExpand"/>
+
+                <Label HorizontalOptions="CenterAndExpand" 
+                       FontSize="16"
+                       TextColor="#FFFFFF">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="    Você receberá um e-mail com"/>
+                                <Span Text="&#10;"/>
+                                <Span Text="instruçoes para resgatar sua senha."/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                <Button Text="Voltar para o login" 
+                        TextColor="#6FB6DC" FontSize="13" 
+                        FontAttributes="Bold"
+                        HeightRequest="45" 
+                        WidthRequest="300" 
+                        BackgroundColor="#FFFFFF" 
+                        CornerRadius="100" 
+                        Command="{Binding Path=cmdVoltar}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:ex="clr-namespace:Smartd.Bibliotecas.Extensions"
+                  mc:Ignorable="d"
+                  x:Class="Smartd.Views.Shared.EmergenciaPage"
+                  NavigationPage.HasNavigationBar="False"
+                  NavigationPage.HasBackButton="False"             
+                  BackgroundColor="#90000000">
+
+
+    <pages:PopupPage.Content>
+        <Grid Margin="20"
+              VerticalOptions="CenterAndExpand">
+            <ScrollView>
+                <StackLayout>
+                    <Grid HorizontalOptions="End">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{ex:ImageResource Smartd.Content.Images.close.png}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=cmdFechar}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+
+                    <Frame BackgroundColor="#FFFFFF"
+                           CornerRadius="25"
+                           HasShadow="False"
+                           Padding="0">
+
+                        <StackLayout Padding="10"
+                                     Spacing="20">
+                            <Button Text="Ligar para o médico" 
+                                    TextColor="#FFFFFF" 
+                                    FontSize="13" 
+                                    FontAttributes="Bold" 
+                                    BackgroundColor="#DD3C44" 
+                                    CornerRadius="20" />
+                            <Button Text="Ligar para emergência" 
+                                    TextColor="#FFFFFF" 
+                                    FontSize="13" 
+                                    FontAttributes="Bold"
+                                    BackgroundColor="#DD3C44" 
+                                    CornerRadius="20" 
+                                    Command="{Binding cmdLigarEmergencia}"/>
+
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+            
+            <ContentView IsVisible="{Binding Path=IsBusy}" 
+                         HorizontalOptions="FillAndExpand" 
+                         VerticalOptions="FillAndExpand">
+                <Frame BackgroundColor="White" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center" 
+                       CornerRadius="10" 
+                       BorderColor="LightGray"
+                       HasShadow="True"
+                       Padding="30">
+                    <StackLayout>
+                        <ActivityIndicator IsRunning="{Binding Path=IsBusy}" 
+                                           IsVisible="{Binding Path=IsBusy}"
+                                           Color="{StaticResource Key=PrimaryColor}"/>
+                        <Label Text="Aguarde" 
+                               FontSize="17" 
+                               HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </Frame>
+            </ContentView>
+        </Grid>
+    </pages:PopupPage.Content>
+</pages:PopupPage>

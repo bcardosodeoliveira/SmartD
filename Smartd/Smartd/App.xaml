@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:converters="clr-namespace:Smartd.Bibliotecas.Converters"
+             xmlns:validations="clr-namespace:Smartd.Bibliotecas.Validations"
+             mc:Ignorable="d"
+             x:Class="Smartd.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <converters:LoadingConverter x:Key="loadingConverter" />
+            <validations:FirstValidationErrorConverter x:Key="firstValidationErrorConverter" />
+            <validations:HasErrorsConverter x:Key="hasErrorsConverter" />
+            <converters:NegateBooleanConverter x:Key="inverter"/>
+
+            <Color x:Key="PrimaryColor">#2196F3</Color>
+            <Color x:Key="BackgroundDefault">#f2f2f2</Color>
+            <Color x:Key="ErrorColor">#FF5252</Color>
+
+            <Style x:Key="ValidationErrorLabelStyle" TargetType="{x:Type Label}">
+                <Setter Property="TextColor" Value="{StaticResource Key=ErrorColor}" />
+                <Setter Property="FontSize" Value="14" />
+            </Style>
+
+            <!--Font Styles-->
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeRegular">
+                <On Platform="Android" Value="fa-regular-400.ttf#Font Awesome 5 Pro Regular" />
+                <On Platform="iOS" Value="FontAwesome5Pro-Regular" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeLight">
+                <On Platform="Android" Value="fa-light-300.ttf#Font Awesome 5 Pro Light" />
+                <On Platform="iOS" Value="FontAwesome5Pro-Light" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeSolid">
+                <On Platform="Android" Value="fa-solid-900.ttf#Font Awesome 5 Pro Solid" />
+                <On Platform="iOS" Value="FontAwesome5Pro-Solid" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeBrands">
+                <On Platform="Android" Value="fa-brands-400.ttf#Font Awesome 5 Brands Regular" />
+                <On Platform="iOS" Value="Font Awesome 5 Brands" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontMaterial">
+                <On Platform="Android" Value="MaterialIcons-Regular.ttf#Material Icons" />
+                <On Platform="iOS" Value="MaterialIcons-Regular" />
+            </OnPlatform>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

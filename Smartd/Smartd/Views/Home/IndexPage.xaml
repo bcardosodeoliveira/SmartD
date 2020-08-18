@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:ex="clr-namespace:Smartd.Bibliotecas.Extensions"
+             mc:Ignorable="d"
+             x:Class="Smartd.Views.Home.IndexPage"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+             BackgroundImageSource="{ex:ImageResource Source=Smartd.Content.Images.backgroundmenu.png}">
+    
+    <ContentPage.Content>
+        <Grid>
+            <ScrollView Opacity="{Binding IsBusy, Converter={StaticResource Key=loadingConverter}}" VerticalOptions="FillAndExpand">
+                <StackLayout>
+                    <StackLayout  VerticalOptions="Start" Padding="15,10,15,0">
+                        <StackLayout Orientation="Horizontal">
+                            <Grid HorizontalOptions="StartAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30" />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{ex:ImageResource Source=Smartd.Content.Images.menu.png}"/>
+                            </Grid>
+                            <StackLayout HorizontalOptions="CenterAndExpand">
+                                <Frame BorderColor="#F6F2F0"  
+                                       BackgroundColor="#F6F2F0" 
+                                       HasShadow="False" 
+                                       HeightRequest="20" 
+                                       WidthRequest="20" 
+                                       CornerRadius="60"/>
+                            </StackLayout>
+                            <Grid HorizontalOptions="EndAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30" />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{ex:ImageResource Source=Smartd.Content.Images.more.png}"/>
+                            </Grid>
+                        </StackLayout>
+                        <Label Text="{Binding Path=Sessao.nome,StringFormat='Olá, {0}.'}"
+                               TextColor="#F6F2F0"
+                               FontSize="16"
+                               HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+
+                    <StackLayout Padding="15,10,15,0">
+                        <StackLayout Orientation="Horizontal" >
+                            <Label Text="Próxima sessão"                       
+                                   TextColor="#000000"
+                                   FontSize="16"
+                                   HorizontalOptions="StartAndExpand"/>
+                            <Label Text="{Binding Path=ProximaSessao.data_formatada}"
+                                   TextColor="#000000"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   IsVisible="{Binding Path=HasProximaSessao}"
+                                   HorizontalOptions="EndAndExpand"/>
+                            <Label Text="Sem Agendamento"
+                                   TextColor="#000000"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   IsVisible="{Binding Path=HasProximaSessao,Converter={StaticResource Key=inverter}}"
+                                   HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                        <StackLayout  Padding="0,5,0,0">
+                            <Grid ColumnSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Grid.Column="0">
+                                    <Grid HorizontalOptions="CenterAndExpand" IsEnabled="{Binding Path=HasProximaSessao}" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="70" />
+                                    </Grid.RowDefinitions>
+                                    <Frame Padding="0" 
+                                           Margin="0" 
+                                           BorderColor="#43ABE2"  
+                                           BackgroundColor="#43ABE2" 
+                                           HasShadow="False" 
+                                           CornerRadius="30">
+                                        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                            <Grid HorizontalOptions="CenterAndExpand">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="50" />
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="{ex:ImageResource Source=Smartd.Content.Images.dish.png}"/>
+                                            </Grid>
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
+                                <Label TextColor="#000000" 
+                                           Text="Escolher&#10;Refeição"
+                                           FontSize="16" 
+                                           HorizontalTextAlignment="Center"/>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=cmdRefeicao}"/>
+                                    </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1">
+                                <Grid HorizontalOptions="CenterAndExpand" IsEnabled="{Binding Path=HasProximaSessao}" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                            <RowDefinition Height="70" />
+                                        </Grid.RowDefinitions>
+                                    <Frame Padding="0" 
+                                           Margin="0" 
+                                           BorderColor="#43ABE2"  
+                                           BackgroundColor="#43ABE2" 
+                                           HasShadow="False" 
+                                           CornerRadius="30">
+                                        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                            <Grid HorizontalOptions="CenterAndExpand">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="50" />
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="{ex:ImageResource Source=Smartd.Content.Images.calendar_check.png}"/>
+                                            </Grid>
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
+                                <Label TextColor="#000000" 
+                                           Text="Alterar&#10;Agenda"
+                                           FontSize="16" 
+                                           HorizontalTextAlignment="Center"/>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=cmdAlterarAgenda}"/>
+                                    </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                            <StackLayout Grid.Column="2">
+                                    <Grid HorizontalOptions="CenterAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="70" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="70" />
+                                        </Grid.RowDefinitions>
+                                        <Frame Padding="0" 
+                                           Margin="0" 
+                                           BorderColor="#43ABE2"  
+                                           BackgroundColor="#43ABE2" 
+                                           HasShadow="False" 
+                                           CornerRadius="30">
+                                            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                                <Grid HorizontalOptions="CenterAndExpand">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="50" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Image Source="{ex:ImageResource Source=Smartd.Content.Images.sos.png}"/>
+                                                </Grid>
+                                            </StackLayout>
+                                        </Frame>
+                                    </Grid>
+                                    <Label TextColor="#000000" 
+                                           Text="Emergência"
+                                           FontSize="16" 
+                                           HorizontalTextAlignment="Center"/>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=cmdEmergencia}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout Padding="0,15,0,0" IsVisible="{Binding Path=HasUltimaSessao}" >
+                        <Frame BackgroundColor="#FFFFFF"
+                               BorderColor="#FFFFFF"
+                               HasShadow="False"
+                               CornerRadius="30"
+                               VerticalOptions="Center"
+                               Padding="0">
+                            <StackLayout Padding="15,10,15,20" Spacing="10">
+                                <StackLayout>
+                                    <Label TextColor="#000000" HorizontalTextAlignment="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span Text="Última Sessão" 
+                                                           FontAttributes="Bold"
+                                                           FontSize="16"/>
+                                                    <Span Text="&#10;"/>
+                                                    <Span Text="{Binding Path=UltimaSessao.data,StringFormat='{0:dd \'de\' MMMM \'de\' yyyy}'}"
+                                                          FontSize="13"/>
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Label TextColor="#000000" 
+                                           FontSize="16"
+                                           HorizontalOptions="Start">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span Text="Peso Inicial:"/>
+                                                    <!--<Span Text=" 80,4kg" FontAttributes="Bold"/>-->
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label TextColor="#000000" 
+                                           FontSize="16"
+                                           HorizontalOptions="EndAndExpand">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span Text="Peso Inicial:"/>
+                                                    <!--<Span Text=" 80,4kg" FontAttributes="Bold"/>-->
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+
+                                <Label TextColor="#000000" 
+                                       FontSize="16"
+                                       HorizontalOptions="StartAndExpand">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <FormattedString.Spans>
+                                                <Span Text="Ganho interdialítico:"/>
+                                                <!--<Span Text=" 2,3kg (~2%)" FontAttributes="Bold"/>-->
+                                            </FormattedString.Spans>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Label TextColor="#000000" 
+                                           FontSize="16"
+                                           HorizontalOptions="Start">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span Text="UF Máximo:"/>
+                                                    <!--<Span Text=" 2000m" FontAttributes="Bold"/>-->
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label TextColor="#000000" 
+                                           FontSize="16"
+                                           HorizontalOptions="EndAndExpand">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span Text="Duração:"/>
+                                                    <!--<Span Text=" 04:00h" FontAttributes="Bold"/>-->
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Label TextColor="#000000" 
+                                           FontSize="16"
+                                           HorizontalOptions="Start">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span Text="Heparina"/>
+                                                    <!--<Span Text=" 2ml" FontAttributes="Bold"/>-->
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label TextColor="#000000" 
+                                           FontSize="16"
+                                           HorizontalOptions="EndAndExpand">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span Text="Bicabonato:"/>
+                                                    <!--<Span Text=" 34Meq/l" FontAttributes="Bold"/>-->
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+
+                                <Label TextColor="#000000" 
+                                       FontSize="16"
+                                       HorizontalOptions="StartAndExpand">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <FormattedString.Spans>
+                                                <Span Text="Fluxo de sangue dialisato:"/>
+                                                <!--<Span Text=" 100m/m" FontAttributes="Bold"/>-->
+                                            </FormattedString.Spans>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <StackLayout Padding="0,5,0,0"
+                                             HorizontalOptions="FillAndExpand" 
+                                             VerticalOptions="FillAndExpand">
+                                    <Frame  BackgroundColor="#AFDAEB"
+                                            BorderColor="#AFDAEB"
+                                            HasShadow="False"
+                                            CornerRadius="20"
+                                            Margin="0"
+                                            Padding="0">
+                                        <StackLayout Orientation="Horizontal" 
+                                             Margin="0"
+                                             Padding="10,0,0,0">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Path=cmdHistorico}"/>
+                                            </StackLayout.GestureRecognizers>
+                                            <Grid HorizontalOptions="Start">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="30" />
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="{ex:ImageResource Source=Smartd.Content.Images.clock_refresh.png}"/>
+                                            </Grid>
+                                            <Button Text="Ver histórico das sessões" 
+                                                    TextColor="#000000" 
+                                                    FontSize="13" 
+                                                    FontAttributes="Bold"
+                                                    HeightRequest="45"
+                                                    BackgroundColor="#AFDAEB" 
+                                                    CornerRadius="20"
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    Command="{Binding Path=cmdHistorico}">
+                                            </Button>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+
+                            </StackLayout>
+                        </Frame>
+                        <StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+
+            </ScrollView>
+
+            <ContentView IsVisible="{Binding Path=IsBusy}" 
+                         HorizontalOptions="FillAndExpand" 
+                         VerticalOptions="FillAndExpand">
+                <Frame BackgroundColor="White" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center" 
+                       CornerRadius="10" 
+                       BorderColor="LightGray"
+                       HasShadow="True"
+                       Padding="30">
+                    <StackLayout>
+                        <ActivityIndicator IsRunning="{Binding Path=IsBusy}" 
+                                           IsVisible="{Binding Path=IsBusy}"
+                                           Color="{StaticResource Key=PrimaryColor}"/>
+                        <Label Text="Aguarde" 
+                               FontSize="17" 
+                               HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </Frame>
+            </ContentView>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

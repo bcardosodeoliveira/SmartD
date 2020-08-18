@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:ex="clr-namespace:Smartd.Bibliotecas.Extensions"
+             xmlns:controls="clr-namespace:Smartd.Bibliotecas.Controls"
+             mc:Ignorable="d"
+             x:Class="Smartd.Views.Login.Cadastro.IndexPage"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+             Visual="Material"
+             BackgroundImageSource="{ex:ImageResource Source=Smartd.Content.Images.backgroundcadinicial.png}">
+
+    <ContentPage.Content>
+        <Grid>
+            <ScrollView Opacity="{Binding Path=IsBusy, Converter={StaticResource Key=loadingConverter}}" 
+                        VerticalOptions="FillAndExpand">
+                <StackLayout Padding="30,110,30,0" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Spacing="30">
+                    <StackLayout Spacing="15">
+                        <controls:LabelJustifyControl HorizontalOptions="CenterAndExpand" 
+                                                      FontSize="16"
+                                                      JustifyText="True"
+                                                      TextColor="#FFFFFF">
+                            <controls:LabelJustifyControl.Text>
+                                <x:String>Seja muito bem vindo, somos a Smart.D, uma plataforma que aproxima os pacientes daqueles que cuidam dele, e  para usar nosso app é fácil, basta preencher os dados a seguir.</x:String>
+                            </controls:LabelJustifyControl.Text>
+                        </controls:LabelJustifyControl>
+
+
+                        <controls:LabelJustifyControl HorizontalOptions="CenterAndExpand" 
+                                                      FontSize="16"
+                                                      JustifyText="True"
+                                                      TextColor="#FFFFFF">
+                            <controls:LabelJustifyControl.Text>
+                                <x:String>Mas não se preocupe, pois é tudo muito rápido e seguro, basta clicar nesse botão aqui em baixo e iniciar o seu cadastro.</x:String>
+                            </controls:LabelJustifyControl.Text>
+                        </controls:LabelJustifyControl>
+                    </StackLayout>
+
+                    <StackLayout VerticalOptions="Center" 
+                                 HorizontalOptions="FillAndExpand" 
+                                 Spacing="15" >
+                        <Button Text="Iniciar Cadastro" 
+                                TextColor="#43ABE2" 
+                                FontSize="16" 
+                                FontAttributes="Bold"
+                                BackgroundColor="#FFFFFF" 
+                                CornerRadius="20" 
+                                Command="{Binding Path=cmdIniciarCadastro}" />
+
+                        <StackLayout HorizontalOptions="CenterAndExpand" >
+                            <Label HorizontalOptions="CenterAndExpand"
+                                   FontSize="13" 
+                                   Text="voltar para o login" 
+                                   TextColor="#FFFFFF" 
+                                   Padding="10,5">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Path=cmdFechar}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+            
+            <ContentView IsVisible="{Binding Path=IsBusy}" 
+                         HorizontalOptions="FillAndExpand" 
+                         VerticalOptions="FillAndExpand">
+                <Frame BackgroundColor="White" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center" 
+                       CornerRadius="10" 
+                       BorderColor="LightGray"
+                       HasShadow="True"
+                       Padding="30">
+                    <StackLayout>
+                        <ActivityIndicator IsRunning="{Binding Path=IsBusy}" 
+                                           IsVisible="{Binding Path=IsBusy}"
+                                           Visual="Material"
+                                           Color="{StaticResource Key=PrimaryColor}"/>
+                        <Label Text="Aguarde" 
+                               FontSize="17" 
+                               HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </Frame>
+            </ContentView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

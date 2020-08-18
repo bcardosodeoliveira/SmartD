@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ex="clr-namespace:Smartd.Bibliotecas.Extensions"
+             xmlns:behaviors="clr-namespace:Smartd.Bibliotecas.Behaviors"
+             xmlns:behaviorPack="clr-namespace:Xamarin.Forms.BehaviorValidationPack;assembly=Xamarin.Forms.BehaviorValidationPack"
+             xmlns:controls="clr-namespace:Smartd.Bibliotecas.Controls"
+             mc:Ignorable="d"
+             x:Class="Smartd.Views.Login.Cadastro.EnderecoPage">
+
+    <ContentView.Content>
+        <ScrollView>
+            <StackLayout Spacing="0">
+                <Label Text="Endereço"
+                       TextColor="#000000"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       Margin="0,5,0,10"
+                       HorizontalOptions="Center"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="4*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout>
+                        <Label Text="CEP"
+                               TextColor="#000000"
+                               FontSize="13"/>
+
+                        <Frame Padding="0" 
+                               Margin="0" 
+                               BorderColor="#43ABE2"  
+                               BackgroundColor="#FFFFFF" 
+                               HasShadow="False"
+                               HorizontalOptions="FillAndExpand">
+                            <controls:EntryLight FontSize="13"
+                                                 TextColor="#000000"
+                                                 ReturnType="Next" 
+                                                 Keyboard="Numeric"
+                                                 Text="{Binding Path=Dados.endereco.CEP.Value}"
+                                                 BackgroundColor="Transparent">
+                                <controls:EntryLight.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                                      Command="{Binding Path=cmdValidarCEP}"/>
+                                    <behaviorPack:MaskedBehavior Mask="XXXXX-XXX" />
+                                </controls:EntryLight.Behaviors>
+                            </controls:EntryLight>
+                        </Frame>
+                        <Label Text="{Binding Path=Dados.endereco.CEP.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                               IsVisible="{Binding Path=Dados.endereco.CEP.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                               Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1">
+                        <Label Text="Logradouro"
+                               TextColor="#000000"
+                               FontSize="13"/>
+                
+                        <Frame Padding="0" 
+                               Margin="0" 
+                               BorderColor="#43ABE2"  
+                               BackgroundColor="#FFFFFF" 
+                               HasShadow="False"
+                               HorizontalOptions="FillAndExpand">
+                                <controls:EntryLight FontSize="13"
+                                                     TextColor="#000000"
+                                                     BackgroundColor="Transparent" 
+                                                     Text="{Binding Path=Dados.endereco.Logradouro.Value}"
+                                                     ReturnType="Next">
+                                <controls:EntryLight.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                                      Command="{Binding Path=cmdValidar}"
+                                                                      CommandParameter="{Binding Path=Dados.endereco.Logradouro}"/>
+                                </controls:EntryLight.Behaviors>
+                            </controls:EntryLight>
+                        </Frame>
+                        <Label Text="{Binding Path=Dados.endereco.Logradouro.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                               IsVisible="{Binding Path=Dados.endereco.Logradouro.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                               Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+                    </StackLayout>
+                </Grid>
+
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="4*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout>
+                        <Label Text="Número"
+                               TextColor="#000000"
+                               FontSize="13"/>
+
+                        <Frame Padding="0" 
+                               Margin="0" 
+                               BorderColor="#43ABE2"  
+                               BackgroundColor="#FFFFFF" 
+                               HasShadow="False"
+                               HorizontalOptions="FillAndExpand">
+                            <controls:EntryLight FontSize="13"
+                                                 TextColor="#000000"
+                                                 ReturnType="Next" 
+                                                 Text="{Binding Path=Dados.endereco.Numero.Value}"
+                                                 BackgroundColor="Transparent">
+                                <controls:EntryLight.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                                      Command="{Binding Path=cmdValidar}"
+                                                                      CommandParameter="{Binding Path=Dados.endereco.Numero}"/>
+                                </controls:EntryLight.Behaviors>
+                            </controls:EntryLight>
+                        </Frame>
+                        <Label Text="{Binding Path=Dados.endereco.Numero.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                               IsVisible="{Binding Path=Dados.endereco.Numero.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                               Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1">
+                        <Label Text="Complemento"
+                               TextColor="#000000"
+                               FontSize="13"/>
+
+                        <Frame Padding="0" 
+                               Margin="0" 
+                               BorderColor="#43ABE2"  
+                               BackgroundColor="#FFFFFF" 
+                               HasShadow="False"
+                               HorizontalOptions="FillAndExpand">
+                            <controls:EntryLight FontSize="13"
+                                                 TextColor="#000000"
+                                                 ReturnType="Next" 
+                                                 Text="{Binding Path=Dados.endereco.complemento}"
+                                                 BackgroundColor="Transparent" />
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout>
+                        <Label Text="Bairro"
+                               TextColor="#000000"
+                               FontSize="13"/>
+
+                        <Frame Padding="0" 
+                               Margin="0" 
+                               BorderColor="#43ABE2"  
+                               BackgroundColor="#FFFFFF" 
+                               HasShadow="False"
+                               HorizontalOptions="FillAndExpand">
+                            <controls:EntryLight FontSize="13"
+                                                 TextColor="#000000"
+                                                 ReturnType="Next" 
+                                                 Text="{Binding Path=Dados.endereco.Bairro.Value}"
+                                                 BackgroundColor="Transparent">
+                                <controls:EntryLight.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                                      Command="{Binding Path=cmdValidar}"
+                                                                      CommandParameter="{Binding Path=Dados.endereco.Bairro}"/>
+                                </controls:EntryLight.Behaviors>
+                            </controls:EntryLight>
+                        </Frame>
+                        <Label Text="{Binding Path=Dados.endereco.Bairro.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                               IsVisible="{Binding Path=Dados.endereco.Bairro.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                               Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1">
+                        <Label Text="Cidade"
+                               TextColor="#000000"
+                               FontSize="13"/>
+
+                        <Frame Padding="0" 
+                               Margin="0" 
+                               BorderColor="#43ABE2"  
+                               BackgroundColor="#FFFFFF" 
+                               HasShadow="False"
+                               HorizontalOptions="FillAndExpand">
+                            <controls:EntryLight FontSize="13"
+                                                 TextColor="#000000"
+                                                 ReturnType="Done" 
+                                                 Text="{Binding Path=Dados.endereco.Cidade.Value}"
+                                                 BackgroundColor="Transparent">
+                                <controls:EntryLight.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                                      Command="{Binding Path=cmdValidar}"
+                                                                      CommandParameter="{Binding Path=Dados.endereco.Cidade}"/>
+                                </controls:EntryLight.Behaviors>
+                            </controls:EntryLight>
+                        </Frame>
+                        <Label Text="{Binding Path=Dados.endereco.Cidade.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                               IsVisible="{Binding Path=Dados.endereco.Cidade.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                               Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+                    </StackLayout>
+                </Grid>
+
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout>
+                        <Label Text="Estado"
+                               TextColor="#000000"
+                               FontSize="13"/>
+
+                        <Frame Padding="0" 
+                               Margin="0" 
+                               BorderColor="#43ABE2"  
+                               BackgroundColor="#FFFFFF" 
+                               HasShadow="False"
+                               HorizontalOptions="FillAndExpand">
+                            <controls:PickerLight FontSize="13"
+                                                  TextColor="#000000"
+                                                  Margin="2,9"
+                                                  ItemsSource="{Binding Path=ListaUF}"
+                                                  ItemDisplayBinding="{Binding Path=Estado}"
+                                                  SelectedIndex="{Binding Path=Dados.IndexUF}"
+                                                  BackgroundColor="Transparent">
+                                <controls:PickerLight.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="SelectedIndexChanged"
+                                                                      Command="{Binding Path=cmdValidar}"
+                                                                      CommandParameter="{Binding Path=Dados.endereco.UF}"/>
+                                </controls:PickerLight.Behaviors>
+                            </controls:PickerLight>
+                        </Frame>
+                        <Label Text="{Binding Path=Dados.endereco.UF.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                               IsVisible="{Binding Path=Dados.endereco.UF.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                               Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1">
+                        <Label Text="Naturalidade"
+                               TextColor="#000000"
+                               FontSize="13"/>
+
+                        <Frame Padding="0" 
+                               Margin="0" 
+                               BorderColor="#43ABE2"  
+                               BackgroundColor="#FFFFFF" 
+                               HasShadow="False"
+                               HorizontalOptions="FillAndExpand">
+                            <controls:EntryLight FontSize="13"
+                                                 TextColor="#000000"
+                                                 ReturnType="Done" 
+                                                 Text="{Binding Path=Dados.Naturalidade.Value}"
+                                                 BackgroundColor="Transparent">
+                                <controls:EntryLight.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                                      Command="{Binding Path=cmdValidar}"
+                                                                      CommandParameter="{Binding Path=Dados.Naturalidade}"/>
+                                </controls:EntryLight.Behaviors>
+                            </controls:EntryLight>
+                        </Frame>
+                        <Label Text="{Binding Path=Dados.Naturalidade.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                               IsVisible="{Binding Path=Dados.Naturalidade.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                               Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+                    </StackLayout>
+                </Grid>
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

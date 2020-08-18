@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:ex="clr-namespace:Smartd.Bibliotecas.Extensions"
+             xmlns:controls="clr-namespace:Smartd.Bibliotecas.Controls"
+             xmlns:view="clr-namespace:Smartd.Views.Login.Cadastro"
+             xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
+             mc:Ignorable="d"
+             x:Class="Smartd.Views.Login.Cadastro.InicioPage"             
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+             Visual="Material"
+             BackgroundImageSource="{ex:ImageResource Source=Smartd.Content.Images.backgroundcad.png}">
+
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout Padding="15,80,15,20" 
+                         Opacity="{Binding Path=IsBusy, Converter={StaticResource Key=loadingConverter}}" 
+                         VerticalOptions="FillAndExpand">
+                <Grid Padding="0,0,0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Column="0">
+                        <Frame Padding="0" 
+                                Margin="0" 
+                                HasShadow="False" 
+                                BorderColor="#F6F2F0"  
+                                BackgroundColor="#F6F2F0"
+                                HorizontalOptions="CenterAndExpand"
+                                CornerRadius="100">
+                            <Frame.Triggers>
+                                <DataTrigger Binding="{Binding Path=IndexWizard}" TargetType="Frame" Value="0">
+                                    <Setter Property="BorderColor" Value="#43ABE2" />
+                                    <Setter Property="BackgroundColor" Value="#43ABE2" />
+                                </DataTrigger>
+                            </Frame.Triggers>
+                            <Grid xe:TouchEffect.Color="White"
+                                  xe:Commands.Tap="{Binding Path=cmdAbrirTab}"
+                                  xe:Commands.TapParameter="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40" />
+                                </Grid.RowDefinitions>
+                                <Label Text="1"
+                                        HorizontalOptions="CenterAndExpand"
+                                        VerticalTextAlignment="Center"
+                                        TextColor="#43ABE2"
+                                        FontSize="16">
+                                    <Label.Triggers>
+                                        <DataTrigger Binding="{Binding Path=IndexWizard}" TargetType="Label" Value="0">
+                                            <Setter Property="TextColor" Value="#FFFFFF" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1">
+                        <Frame Padding="0" 
+                                Margin="0" 
+                                HasShadow="False" 
+                                BorderColor="#F6F2F0"  
+                                BackgroundColor="#F6F2F0"
+                                HorizontalOptions="CenterAndExpand"
+                                CornerRadius="100">
+                            <Frame.Triggers>
+                                <DataTrigger Binding="{Binding Path=IndexWizard}" TargetType="Frame" Value="1">
+                                    <Setter Property="BorderColor" Value="#43ABE2" />
+                                    <Setter Property="BackgroundColor" Value="#43ABE2" />
+                                </DataTrigger>
+                            </Frame.Triggers>
+                            <Grid xe:TouchEffect.Color="White"
+                                  xe:Commands.Tap="{Binding Path=cmdAbrirTab}"
+                                  xe:Commands.TapParameter="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40" />
+                                </Grid.RowDefinitions>
+                                <Label Text="2"
+                                        HorizontalOptions="CenterAndExpand"
+                                        VerticalTextAlignment="Center"
+                                        TextColor="#43ABE2"
+                                        FontSize="16">
+                                    <Label.Triggers>
+                                        <DataTrigger Binding="{Binding Path=IndexWizard}" TargetType="Label" Value="1">
+                                            <Setter Property="TextColor" Value="#FFFFFF" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="2">
+                        <Frame Padding="0" 
+                                Margin="0" 
+                                HasShadow="False" 
+                                BorderColor="#F6F2F0"  
+                                BackgroundColor="#F6F2F0"
+                                HorizontalOptions="CenterAndExpand"
+                                CornerRadius="100">
+                            <Frame.Triggers>
+                                <DataTrigger Binding="{Binding Path=IndexWizard}" TargetType="Frame" Value="2">
+                                    <Setter Property="BorderColor" Value="#43ABE2" />
+                                    <Setter Property="BackgroundColor" Value="#43ABE2" />
+                                </DataTrigger>
+                            </Frame.Triggers>
+                            <Grid xe:TouchEffect.Color="White"
+                                  xe:Commands.Tap="{Binding Path=cmdAbrirTab}"
+                                  xe:Commands.TapParameter="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40" />
+                                </Grid.RowDefinitions>
+                                <Label Text="3"
+                                        HorizontalOptions="CenterAndExpand"
+                                        VerticalTextAlignment="Center"
+                                        TextColor="#43ABE2"
+                                        FontSize="16">
+                                    <Label.Triggers>
+                                        <DataTrigger Binding="{Binding Path=IndexWizard}" TargetType="Label" Value="2">
+                                            <Setter Property="TextColor" Value="#FFFFFF" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="3">
+                        <Frame Padding="0" 
+                                Margin="0" 
+                                HasShadow="False" 
+                                BorderColor="#F6F2F0"  
+                                BackgroundColor="#F6F2F0"
+                                HorizontalOptions="CenterAndExpand"
+                                CornerRadius="100">
+                            <Frame.Triggers>
+                                <DataTrigger Binding="{Binding Path=IndexWizard}" TargetType="Frame" Value="3">
+                                    <Setter Property="BorderColor" Value="#43ABE2" />
+                                    <Setter Property="BackgroundColor" Value="#43ABE2" />
+                                </DataTrigger>
+                            </Frame.Triggers>
+                            <Grid xe:TouchEffect.Color="White"
+                                  xe:Commands.Tap="{Binding Path=cmdAbrirTab}"
+                                  xe:Commands.TapParameter="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40" />
+                                </Grid.RowDefinitions>
+                                <Label Text="4"
+                                        HorizontalOptions="CenterAndExpand"
+                                        VerticalTextAlignment="Center"
+                                        TextColor="#43ABE2"
+                                        FontSize="16">
+                                    <Label.Triggers>
+                                        <DataTrigger Binding="{Binding Path=IndexWizard}" TargetType="Label" Value="3">
+                                            <Setter Property="TextColor" Value="#FFFFFF" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="4">
+                        <Frame Padding="0" 
+                                Margin="0" 
+                                HasShadow="False" 
+                                BorderColor="#F6F2F0"  
+                                BackgroundColor="#F6F2F0"
+                                HorizontalOptions="CenterAndExpand"
+                                CornerRadius="100">
+                            <Frame.Triggers>
+                                <DataTrigger Binding="{Binding Path=IndexWizard}" TargetType="Frame" Value="4">
+                                    <Setter Property="BorderColor" Value="#43ABE2" />
+                                    <Setter Property="BackgroundColor" Value="#43ABE2" />
+                                </DataTrigger>
+                            </Frame.Triggers>
+                            <Grid xe:TouchEffect.Color="White"
+                                  xe:Commands.Tap="{Binding Path=cmdAbrirTab}"
+                                  xe:Commands.TapParameter="4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40" />
+                                </Grid.RowDefinitions>
+                                <Label Text="5"
+                                        HorizontalOptions="CenterAndExpand"
+                                        VerticalTextAlignment="Center"
+                                        TextColor="#43ABE2"
+                                        FontSize="16">
+                                    <Label.Triggers>
+                                        <DataTrigger Binding="{Binding Path=IndexWizard}" TargetType="Label" Value="4">
+                                            <Setter Property="TextColor" Value="#FFFFFF" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+
+                <controls:TabView HeaderBackgroundColor="Transparent" 
+                                    VerticalOptions="FillAndExpand"
+                                    IsSwipeEnabled="False"
+                                    SelectedTabIndex="{Binding Path=IndexWizard, Mode=TwoWay}">
+                    <controls:TabView.TabHeaderItemTemplate>
+                        <DataTemplate>
+                            <StackLayout></StackLayout>
+                        </DataTemplate>
+                    </controls:TabView.TabHeaderItemTemplate>
+
+                    <controls:TabItem>
+                        <view:DadosPessoaisPage />
+                    </controls:TabItem>
+                    <controls:TabItem>
+                        <view:EnderecoPage />
+                    </controls:TabItem>
+                    <controls:TabItem>
+                        <view:ContatoPage />
+                    </controls:TabItem>
+                    <controls:TabItem>
+                        <view:SaudePage />
+                    </controls:TabItem>
+                    <controls:TabItem>
+                        <view:SenhaPage />
+                    </controls:TabItem>
+                </controls:TabView>
+
+                <StackLayout Spacing="12" Margin="60,20,60,0">
+                    <Button Text="Avançar" 
+                            TextColor="#FFFFFF" 
+                            FontSize="13" 
+                            FontAttributes="Bold"
+                            BackgroundColor="#43ABE2" 
+                            CornerRadius="20" 
+                            Command="{Binding Path=cmdAvancar}">
+                        <Button.Triggers>
+                            <DataTrigger Binding="{Binding Path=IndexWizard}" TargetType="Button" Value="4">
+                                <Setter Property="Text" Value="Concluir Cadastro" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+
+                    <Button Text="voltar etapa" 
+                            TextColor="#43ABE2" 
+                            FontSize="13" 
+                            FontAttributes="Bold"
+                            BackgroundColor="White" 
+                            CornerRadius="20" 
+                            Command="{Binding Path=cmdVoltar}">
+                        <Button.Triggers>
+                            <DataTrigger Binding="{Binding Path=IndexWizard}" TargetType="Button" Value="0">
+                                <Setter Property="Text" Value="cancelar cadastro" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </StackLayout>
+            </StackLayout>
+
+            <ContentView IsVisible="{Binding Path=IsBusy}" 
+                         HorizontalOptions="FillAndExpand" 
+                         VerticalOptions="FillAndExpand">
+                <Frame BackgroundColor="White" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center" 
+                       CornerRadius="10" 
+                       BorderColor="LightGray"
+                       HasShadow="True"
+                       Padding="30">
+                    <StackLayout>
+                        <ActivityIndicator IsRunning="{Binding Path=IsBusy}" 
+                                           IsVisible="{Binding Path=IsBusy}"
+                                           Visual="Material"
+                                           Color="{StaticResource Key=PrimaryColor}"/>
+                        <Label Text="Aguarde" 
+                               FontSize="17" 
+                               HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </Frame>
+            </ContentView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

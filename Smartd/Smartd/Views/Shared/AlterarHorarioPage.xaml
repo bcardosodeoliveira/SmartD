@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ex="clr-namespace:Smartd.Bibliotecas.Extensions"
+             xmlns:controls="clr-namespace:Smartd.Bibliotecas.Controls"
+             mc:Ignorable="d"
+             x:Class="Smartd.Views.Shared.AlterarHorarioPage"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+             BackgroundImageSource="{ex:ImageResource Smartd.Content.Images.backgroundmenu.png}">
+
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" VerticalOptions="Start" Margin="15,10,15,0">
+                <Image Source="{ex:ImageResource Smartd.Content.Images.menu.png}"
+                   WidthRequest="30" 
+                   HeightRequest="30"
+                   HorizontalOptions="StartAndExpand"/>
+                <StackLayout Margin="0,5,0,0">
+                    <Frame BorderColor="#F6F2F0"  
+                           BackgroundColor="#F6F2F0" 
+                           HasShadow="False" 
+                           HeightRequest="15" 
+                           WidthRequest="15" 
+                           CornerRadius="60"/>
+                    <Label Text="Olá, José da Silva."
+                           TextColor="#F6F2F0"
+                           FontSize="16"
+                           Margin="0,5,0,0"/>
+                </StackLayout>
+                <Image Source="{ex:ImageResource Smartd.Content.Images.more.png}"
+                       WidthRequest="30" 
+                       HeightRequest="30"
+                       HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+
+
+            <StackLayout Margin="0" VerticalOptions="Start">
+                <Frame BackgroundColor="#FFFFFF"
+                       BorderColor="#FFFFFF"
+                       HasShadow="False"
+                       CornerRadius="30"
+                       VerticalOptions="Center"
+                       HeightRequest="250"
+                       Padding="0">
+                    <StackLayout Margin="15,0,15,0" 
+                                 VerticalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="{ex:ImageResource Smartd.Content.Images.cicle_menu.png}"
+                               WidthRequest="20" 
+                               HeightRequest="20"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Start"/>
+                            <Label Text="Abril 2020"
+                               TextColor="#000000"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Start"/>
+                        </StackLayout>
+                        <StackLayout>
+                            <Frame Padding="0" 
+                                   Margin="0" 
+                                   BorderColor="#808180"  
+                                   BackgroundColor="#808180" 
+                                   HasShadow="False" 
+                                   HeightRequest="30" 
+                                   WidthRequest="30" 
+                                   CornerRadius="60"
+                                   HorizontalOptions="Start">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Selecionar"/>
+                                </Frame.GestureRecognizers>
+                                <StackLayout>
+                                    <Label Text="06"
+                                       TextColor="#000000"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalOptions="CenterAndExpand"/>
+                                </StackLayout>
+                            </Frame>
+                            <Frame Padding="0" 
+                                   Margin="0" 
+                                   BorderColor="#808180"  
+                                   BackgroundColor="#808180" 
+                                   HasShadow="False" 
+                                   HeightRequest="30" 
+                                   WidthRequest="30" 
+                                   CornerRadius="60"
+                                   HorizontalOptions="Start">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Selecionar"/>
+                                </Frame.GestureRecognizers>
+                                <StackLayout>
+                                    <Label Text="13"
+                                       TextColor="#000000"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalOptions="CenterAndExpand"/>
+                                </StackLayout>
+                            </Frame>
+                            <Frame Padding="0" 
+                                   Margin="0" 
+                                   BorderColor="#808180"  
+                                   BackgroundColor="#808180" 
+                                   HasShadow="False" 
+                                   HeightRequest="30" 
+                                   WidthRequest="30" 
+                                   CornerRadius="60"
+                                   HorizontalOptions="Start">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Selecionar"/>
+                                </Frame.GestureRecognizers>
+                                <StackLayout>
+                                    <Label Text="20"
+                                       TextColor="#000000"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalOptions="CenterAndExpand"/>
+                                </StackLayout>
+                            </Frame>
+                            <Frame Padding="0" 
+                                   Margin="0" 
+                                   BorderColor="#808180"  
+                                   BackgroundColor="#808180" 
+                                   HasShadow="False" 
+                                   HeightRequest="30" 
+                                   WidthRequest="30" 
+                                   CornerRadius="60"
+                                   HorizontalOptions="Start">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Selecionar"/>
+                                </Frame.GestureRecognizers>
+                                <StackLayout>
+                                    <Label Text="27"
+                                       TextColor="#000000"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalOptions="CenterAndExpand"/>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <StackLayout>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="CenterAndExpand" IsVisible="{Binding SelecionarVisible}">
+                <Image Source="{ex:ImageResource Smartd.Content.Images.click_azul.png}"
+                   WidthRequest="60" 
+                   HeightRequest="60"
+                   HorizontalOptions="Center"/>
+                <Label TextColor="#000000" 
+                       FontSize="13"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="Selecione o dia para ver os horários"/>
+                                <Span Text="&#10;"/>
+                                <Span Text="        "/>
+                                <Span Text="        "/>
+                                <Span Text="        "/>
+                                <Span Text="disponíveis"/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <StackLayout Margin="50,10,50,0">
+                    <Button Text="Cancelar alteração" 
+                        TextColor="#000000" 
+                        FontSize="13" 
+                        FontAttributes="Bold"
+                        HeightRequest="45" 
+                        WidthRequest="100" 
+                        BackgroundColor="#CDCDCD" 
+                        CornerRadius="100" 
+                        Command="{Binding cmdCancelar}"/>
+
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Margin="15,0,15,0" IsVisible="{Binding DisponivelVisible}">
+                <StackLayout Orientation="Horizontal">
+                    <Label HorizontalOptions="StartAndExpand" 
+                           FontSize="16">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text=" — "
+                                          TextColor="#43ABE2"/>
+                                    <Span Text="Horários Disponíveis"
+                                          TextColor="#000000"
+                                          FontAttributes="Bold"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+                <StackLayout HorizontalOptions="Start"
+                             Orientation="Horizontal">
+                    <CheckBox HorizontalOptions="Start"/>
+                    <Label Text="11:00"
+                           TextColor="#000000"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="Start"
+                             Orientation="Horizontal">
+                    <CheckBox HorizontalOptions="Start"/>
+                    <Label Text="12:00"
+                           TextColor="#000000"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="Center"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="Start"
+                             Orientation="Horizontal">
+                    <CheckBox HorizontalOptions="Start"/>
+                    <Label Text="17:00"
+                           TextColor="#000000"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="Start"
+                             Orientation="Horizontal">
+                    <CheckBox HorizontalOptions="Start"/>
+                    <Label Text="18:00"
+                           TextColor="#000000"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center"/>
+                </StackLayout>
+                <StackLayout Margin="50,10,50,0">
+                    <Button Text="Confirmar alteração" 
+                        TextColor="#000000" 
+                        FontSize="13" 
+                        FontAttributes="Bold"
+                        HeightRequest="45" 
+                        WidthRequest="100" 
+                        BackgroundColor="#AEDAEB" 
+                        CornerRadius="100" 
+                        Command="{Binding cmdCancelar}"/>
+                </StackLayout>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

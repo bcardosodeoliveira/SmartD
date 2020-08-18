@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ex="clr-namespace:Smartd.Bibliotecas.Extensions"
+             xmlns:behaviors="clr-namespace:Smartd.Bibliotecas.Behaviors"
+             xmlns:behaviorPack="clr-namespace:Xamarin.Forms.BehaviorValidationPack;assembly=Xamarin.Forms.BehaviorValidationPack"
+             xmlns:controls="clr-namespace:Smartd.Bibliotecas.Controls"
+             mc:Ignorable="d"
+             x:Class="Smartd.Views.Login.Cadastro.ContatoPage">
+
+
+    <ContentView.Content>
+        <ScrollView>
+            <StackLayout Spacing="0">
+                <Label Text="Contato"
+                       TextColor="#000000"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       Margin="0,5,0,10"
+                       HorizontalOptions="Center"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout>
+                        <Label Text="Celular com DDD"
+                               TextColor="#000000"
+                               FontSize="13"/>
+
+                        <Frame Padding="0" 
+                               Margin="0" 
+                               BorderColor="#43ABE2"  
+                               BackgroundColor="#FFFFFF" 
+                               HasShadow="False"
+                               HorizontalOptions="FillAndExpand">
+                            <controls:EntryLight FontSize="13"
+                                                 TextColor="#000000"
+                                                 ReturnType="Next" 
+                                                 Keyboard="Numeric"
+                                                 Text="{Binding Path=Dados.telefone.Celular.Value}"
+                                                 BackgroundColor="Transparent">
+                                <controls:EntryLight.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                                      Command="{Binding Path=cmdValidar}"
+                                                                      CommandParameter="{Binding Path=Dados.telefone.Celular}"/>
+                                    <behaviorPack:MaskedBehavior Mask="(XX) XXXXX-XXXX" />
+                                </controls:EntryLight.Behaviors>
+                            </controls:EntryLight>
+                        </Frame>
+                        <Label Text="{Binding Path=Dados.telefone.Celular.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                               IsVisible="{Binding Path=Dados.telefone.Celular.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                               Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1">
+                        <Label Text="Tel.Residencial"
+                               TextColor="#000000"
+                               FontSize="13"/>
+
+                        <Frame Padding="0" 
+                               Margin="0" 
+                               BorderColor="#43ABE2"  
+                               BackgroundColor="#FFFFFF" 
+                               HasShadow="False"
+                               HorizontalOptions="FillAndExpand">
+                            <controls:EntryLight FontSize="13"
+                                                 TextColor="#000000"
+                                                 Keyboard="Numeric"
+                                                 BackgroundColor="Transparent" 
+                                                 Text="{Binding Path=Dados.telefone.Fixo.Value}"
+                                                 ReturnType="Next">
+                                <controls:EntryLight.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                                      Command="{Binding Path=cmdValidar}"
+                                                                      CommandParameter="{Binding Path=Dados.telefone.Fixo}"/>
+                                    <behaviorPack:MaskedBehavior Mask="(XX) XXXX-XXXX" />
+                                </controls:EntryLight.Behaviors>
+                            </controls:EntryLight>
+                        </Frame>
+                        <Label Text="{Binding Path=Dados.telefone.Fixo.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                               IsVisible="{Binding Path=Dados.telefone.Fixo.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                               Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+                    </StackLayout>
+                </Grid>
+
+                <Label Text="E-mail"
+                       TextColor="#000000"
+                       Margin="0,10,0,0"
+                       FontSize="13"/>
+
+                <Frame Padding="0" 
+                       Margin="0" 
+                       BorderColor="#43ABE2"  
+                       BackgroundColor="#FFFFFF" 
+                       HasShadow="False"
+                       HorizontalOptions="FillAndExpand">
+                    <controls:EntryLight FontSize="13"
+                                         TextColor="#000000"
+                                         ReturnType="Done" 
+                                         Keyboard="Email"
+                                         Text="{Binding Path=Dados.Email.Value}"
+                                         BackgroundColor="Transparent">
+                        <controls:EntryLight.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                              Command="{Binding Path=cmdValidar}"
+                                                              CommandParameter="{Binding Path=Dados.Email}"/>
+                        </controls:EntryLight.Behaviors>
+                    </controls:EntryLight>
+                </Frame>
+                <Label Text="{Binding Path=Dados.Email.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                        IsVisible="{Binding Path=Dados.Email.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                        Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+
+
+                <StackLayout Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Text="Tem Responsável?"
+                            TextColor="#000000"
+                            FontSize="13"/>
+                    <Switch OnColor="#FFFFFF"
+                            IsToggled="{Binding Path=Dados.TemResponsavel}"/>
+                </StackLayout>
+
+                <StackLayout IsVisible="{Binding Path=Dados.TemResponsavel}" Margin="0,10,0,0">
+                    <Label Text="Nome do Responsável"
+                           TextColor="#000000"
+                           FontSize="13"/>
+
+                    <Frame Padding="0" 
+                           Margin="0" 
+                           BorderColor="#43ABE2"  
+                           BackgroundColor="#FFFFFF" 
+                           HasShadow="False"
+                           HorizontalOptions="FillAndExpand">
+                        <controls:EntryLight FontSize="13"
+                                             Text="{Binding Path=Dados.responsavel[0].Nome.Value}"
+                                             TextColor="#000000"
+                                             ReturnType="Next" 
+                                             BackgroundColor="Transparent">
+                            <controls:EntryLight.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                                  Command="{Binding Path=cmdValidar}"
+                                                                  CommandParameter="{Binding Path=Dados.responsavel[0].Nome}"/>
+                            </controls:EntryLight.Behaviors>
+                        </controls:EntryLight>
+                    </Frame>
+                    <Label Text="{Binding Path=Dados.responsavel[0].Nome.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                           IsVisible="{Binding Path=Dados.responsavel[0].Nome.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                           Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+
+                    <Label Text="Telefone Responsável"
+                           TextColor="#000000"
+                           Margin="0,10,0,0"
+                           FontSize="13"/>
+
+                    <Frame Padding="0" 
+                           Margin="0" 
+                           BorderColor="#43ABE2"  
+                           BackgroundColor="#FFFFFF" 
+                           HasShadow="False"
+                           HorizontalOptions="FillAndExpand">
+                        <controls:EntryLight FontSize="13"
+                                             Text="{Binding Path=Dados.responsavel[0].Telefone.Value}"
+                                             TextColor="#000000"
+                                             ReturnType="Done" 
+                                             Keyboard="Numeric"
+                                             BackgroundColor="Transparent">
+                            <controls:EntryLight.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                                  Command="{Binding Path=cmdValidar}"
+                                                                  CommandParameter="{Binding Path=Dados.responsavel[0].Telefone}"/>
+                                <behaviorPack:MaskedBehavior Mask="(XX) XXXXX-XXXX" />
+                            </controls:EntryLight.Behaviors>
+                        </controls:EntryLight>
+                    </Frame>
+                    <Label Text="{Binding Path=Dados.responsavel[0].Telefone.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                           IsVisible="{Binding Path=Dados.responsavel[0].Telefone.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                           Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

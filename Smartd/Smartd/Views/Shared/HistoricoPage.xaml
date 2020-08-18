@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ex="clr-namespace:Smartd.Bibliotecas.Extensions"
+             xmlns:controls="clr-namespace:Smartd.Bibliotecas.Controls" 
+             xmlns:behaviorsPack="clr-namespace:Smartd.Bibliotecas.Behaviors"
+             mc:Ignorable="d"
+             x:Class="Smartd.Views.Shared.HistoricoPage"             
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+             BackgroundImageSource="{ex:ImageResource Smartd.Content.Images.backgroundmenu.png}">
+
+
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout Opacity="{Binding IsBusy, Converter={StaticResource Key=loadingConverter}}" VerticalOptions="FillAndExpand">
+                <StackLayout  VerticalOptions="Start" Padding="15,10,15,0">
+                    <StackLayout Orientation="Horizontal">
+                        <Grid HorizontalOptions="StartAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{ex:ImageResource Smartd.Content.Images.menu.png}"/>
+                        </Grid>
+                        <Grid HorizontalOptions="CenterAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60" />
+                            </Grid.RowDefinitions>
+                            <Frame BorderColor="#F6F2F0"  
+                                       BackgroundColor="#F6F2F0" 
+                                       HasShadow="False"
+                                       CornerRadius="60"/>
+                        </Grid>
+                        <Grid HorizontalOptions="EndAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{ex:ImageResource Smartd.Content.Images.more.png}"/>
+                        </Grid>
+                    </StackLayout>
+                    <Label Text="{Binding Path=Sessao.nome,StringFormat='Olá, {0}.'}"
+                           TextColor="#F6F2F0"
+                           FontSize="16"
+                           HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" VerticalOptions="Start" Padding="15,40,15,0">
+                    <Grid HorizontalOptions="Start">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{ex:ImageResource Smartd.Content.Images.back.png}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer  Command="{Binding Path=cmdVoltar}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                    <Label Text="Histórico de sessões"
+                           TextColor="#000000"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+
+                <StackLayout IsVisible="{Binding Path=IsEmpty}">
+                    <Label Text="Nenhum resultado encontrado."
+                           TextColor="#000000"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+
+                <!--<ListView ItemsSource="{Binding Path=Lista}"
+                          IsRefreshing="{Binding Path=IsLoading}"
+                          RefreshCommand="{Binding Path=cmdCarregarLista}"
+                          HasUnevenRows="True"
+                          SelectionMode="None">-->
+                <RefreshView IsRefreshing="{Binding Path=IsLoading}"
+                             Command="{Binding Path=cmdCarregarLista}">
+                    <ScrollView>
+                        <StackLayout BindableLayout.ItemsSource="{Binding Path=Lista}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Expander ExpandAnimationEasing="{x:Static Member=Easing.CubicIn}"
+                                          ExpandAnimationLength="500"
+                                          CollapseAnimationEasing="{x:Static Member=Easing.CubicInOut}"
+                                          CollapseAnimationLength="500"
+                                          x:Name="ExpenderVisible">
+                                            <Expander.Header>
+                                                <StackLayout Orientation="Horizontal"
+                                                     Margin="15,10,15,0">
+                                                    <Label Text="{Binding Path=data,StringFormat='{0:dd \'de\' MMMM \'de\' yyyy}'}"
+                                                   TextColor="#000000"
+                                                   FontSize="16"
+                                                   FontAttributes="Bold"
+                                                   HorizontalOptions="StartAndExpand"/>
+                                                    <Grid IsVisible="{Binding Source={x:Reference Name=ExpenderVisible}, Path=IsExpanded, 
+                                                  Converter={StaticResource inverter} }"
+                                                  HorizontalOptions="Start">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="20" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Image Source="{ex:ImageResource Source=Smartd.Content.Images.down-arrow.png}"/>
+                                                    </Grid>
+                                                    <Grid IsVisible="{Binding Source={x:Reference Name=ExpenderVisible}, Path=IsExpanded}"
+                                                  HorizontalOptions="Start">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="20" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Image Source="{ex:ImageResource Source=Smartd.Content.Images.left-arrow.png}"/>
+                                                    </Grid>
+                                                </StackLayout>
+                                            </Expander.Header>
+                                            <StackLayout>
+                                                <Frame BackgroundColor="#FFFFFF"
+                                               BorderColor="#FFFFFF"
+                                               HasShadow="False"
+                                               CornerRadius="30"
+                                               VerticalOptions="Center"
+                                               Padding="0">
+                                                    <StackLayout Margin="15,10,15,20">
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Label TextColor="#000000" 
+                                                           FontSize="16"
+                                                           HorizontalOptions="Start">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <FormattedString.Spans>
+                                                                            <Span Text="Peso Inicial:"/>
+                                                                            <Span Text=" "/>
+                                                                            <Span Text="{Binding Path=PesoInicial}" FontAttributes="Bold"/>
+                                                                        </FormattedString.Spans>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                            <Label TextColor="#000000" 
+                                                           FontSize="16"
+                                                           HorizontalOptions="EndAndExpand">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <FormattedString.Spans>
+                                                                            <Span Text="Peso Final:"/>
+                                                                            <Span Text=" "/>
+                                                                            <Span Text="{Binding Path=PesoFinal}" FontAttributes="Bold"/>
+                                                                        </FormattedString.Spans>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                        </StackLayout>
+
+                                                        <Label TextColor="#000000" 
+                                                       FontSize="16"
+                                                       HorizontalOptions="StartAndExpand">
+                                                            <Label.FormattedText>
+                                                                <FormattedString>
+                                                                    <FormattedString.Spans>
+                                                                        <Span Text="Ganho interdialítico:"/>
+                                                                        <Span Text=" "/>
+                                                                        <Span Text="{Binding Path=Ganho}" FontAttributes="Bold"/>
+                                                                    </FormattedString.Spans>
+                                                                </FormattedString>
+                                                            </Label.FormattedText>
+                                                        </Label>
+
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Label TextColor="#000000" 
+                                                           FontSize="16"
+                                                           HorizontalOptions="Start">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <FormattedString.Spans>
+                                                                            <Span Text="UF Máximo:"/>
+                                                                            <Span Text=" "/>
+                                                                            <Span Text="{Binding Path=Uf}" FontAttributes="Bold"/>
+                                                                        </FormattedString.Spans>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                            <Label TextColor="#000000" 
+                                                           FontSize="16"
+                                                           HorizontalOptions="EndAndExpand">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <FormattedString.Spans>
+                                                                            <Span Text="Duração:"/>
+                                                                            <Span Text=" "/>
+                                                                            <Span Text="{Binding Path=Duracao}" FontAttributes="Bold"/>
+                                                                        </FormattedString.Spans>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                        </StackLayout>
+
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Label TextColor="#000000" 
+                                                           FontSize="16"
+                                                           HorizontalOptions="Start">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <FormattedString.Spans>
+                                                                            <Span Text="Heparina"/>
+                                                                            <Span Text=" "/>
+                                                                            <Span Text="{Binding Path=Heparina}" FontAttributes="Bold"/>
+                                                                        </FormattedString.Spans>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                            <Label TextColor="#000000" 
+                                                           FontSize="16"
+                                                           HorizontalOptions="EndAndExpand">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <FormattedString.Spans>
+                                                                            <Span Text="Bicabonato:"/>
+                                                                            <Span Text=" "/>
+                                                                            <Span Text="{Binding Path=Bicabonato}" FontAttributes="Bold"/>
+                                                                        </FormattedString.Spans>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                        </StackLayout>
+
+                                                        <Label TextColor="#000000" 
+                                                       FontSize="16"
+                                                       HorizontalOptions="StartAndExpand">
+                                                            <Label.FormattedText>
+                                                                <FormattedString>
+                                                                    <FormattedString.Spans>
+                                                                        <Span Text="Fluxo de sangue dialisato:"/>
+                                                                        <Span Text=" "/>
+                                                                        <Span Text="{Binding Path=Fluxo}" FontAttributes="Bold"/>
+                                                                    </FormattedString.Spans>
+                                                                </FormattedString>
+                                                            </Label.FormattedText>
+                                                        </Label>
+                                                    </StackLayout>
+
+                                                </Frame>
+                                            </StackLayout>
+                                        </Expander>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </ScrollView>
+
+                </RefreshView>
+            </StackLayout>
+
+            <ContentView IsVisible="{Binding Path=IsBusy}" 
+                         HorizontalOptions="FillAndExpand" 
+                         VerticalOptions="FillAndExpand">
+                <Frame BackgroundColor="White" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center" 
+                       CornerRadius="10" 
+                       BorderColor="LightGray"
+                       HasShadow="True"
+                       Padding="30">
+                    <StackLayout>
+                        <ActivityIndicator IsRunning="{Binding Path=IsBusy}" 
+                                           IsVisible="{Binding Path=IsBusy}"
+                                           Color="{StaticResource Key=PrimaryColor}"/>
+                        <Label Text="Aguarde" 
+                               FontSize="17" 
+                               HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </Frame>
+            </ContentView>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

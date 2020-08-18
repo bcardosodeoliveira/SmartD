@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             mc:Ignorable="d"
+             x:Class="Smartd.Views.LoadingPage"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+             Visual="Material"
+             BackgroundColor="White">
+
+    <ContentPage.Content>
+        <ContentView IsVisible="True" 
+                     HorizontalOptions="FillAndExpand" 
+                     VerticalOptions="FillAndExpand">
+            <Frame BackgroundColor="White" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center" 
+                       CornerRadius="10" 
+                       BorderColor="LightGray"
+                       HasShadow="True"
+                       Padding="30">
+                <StackLayout>
+                    <ActivityIndicator IsRunning="True" 
+                                       IsVisible="True"
+                                       Color="{StaticResource Key=PrimaryColor}"/>
+                    <Label Text="Aguarde" 
+                           FontSize="17" 
+                           HorizontalTextAlignment="Center" />
+                </StackLayout>
+            </Frame>
+        </ContentView>
+    </ContentPage.Content>
+</ContentPage>

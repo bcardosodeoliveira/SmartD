@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:ex="clr-namespace:Smartd.Bibliotecas.Extensions"
+             xmlns:fonts="clr-namespace:Smartd.Bibliotecas.Fonts"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
+             mc:Ignorable="d"
+             x:Class="Smartd.Views.Shared.CalendarioPage"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+             x:Name="ctnPage"
+             BackgroundImageSource="{ex:ImageResource Source=Smartd.Content.Images.backgroundmenu.png}">
+
+    <ContentPage.Content>
+        <Grid>
+            <ScrollView Opacity="{Binding Path=IsBusy, Converter={StaticResource Key=loadingConverter}}">
+                <StackLayout >
+                    <StackLayout  Padding="15,10,15,0">
+                        <StackLayout Orientation="Horizontal">
+                            <Grid HorizontalOptions="StartAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30" />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{ex:ImageResource Source=Smartd.Content.Images.menu.png}"/>
+                            </Grid>
+                            <Grid HorizontalOptions="CenterAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60" />
+                                </Grid.RowDefinitions>
+                                <Frame BorderColor="#F6F2F0"  
+                                BackgroundColor="#F6F2F0" 
+                                HasShadow="False"
+                                CornerRadius="60"/>
+                            </Grid>
+                            <Grid HorizontalOptions="EndAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30" />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{ex:ImageResource Source=Smartd.Content.Images.more.png}"/>
+                            </Grid>
+                        </StackLayout>
+                        <Label Text="{Binding Path=Sessao.nome,StringFormat='Olá, {0}.'}"
+                        TextColor="#F6F2F0"
+                        FontSize="16"
+                        HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Start" Padding="15,40,15,0">
+                        <Grid HorizontalOptions="Start">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{ex:ImageResource Smartd.Content.Images.back.png}">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer  Command="{Binding Path=cmdVoltar}"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Grid>
+                        <Label Text="Agenda"
+                           TextColor="#000000"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+
+                    <Frame HasShadow="False"
+                       Padding="10"
+                       CornerRadius="15"
+                       Margin="20,0">
+                        <syncfusion:SfCalendar x:Name="calendar" 
+                                    SelectionMode="MultiSelection"
+                                    EnableDatesInPast="False"
+                                    ToggleDaySelection="True"
+                                    OnMonthCellLoaded="calendar_OnMonthCellLoaded"
+                                    OnCalendarTapped="calendar_OnCalendarTapped"
+                                    MonthChanged="calendar_MonthChanged"
+                                    ShowNavigationButtons="True">
+                            <syncfusion:SfCalendar.MonthViewSettings>
+                                <syncfusion:MonthViewSettings TodaySelectionBackgroundColor="{StaticResource Key=PrimaryColor}"
+                                                    TodayBorderColor="Transparent"
+                                                    DateSelectionColor="{StaticResource Key=PrimaryColor}"/>
+                            </syncfusion:SfCalendar.MonthViewSettings>
+                        </syncfusion:SfCalendar>
+                    </Frame>
+
+                    <StackLayout IsVisible="{Binding Path=SelecionarVisible}" Margin="0,10,0,0" Padding="25,2">
+                        <Grid HorizontalOptions="CenterAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60"/>
+                            </Grid.RowDefinitions>
+                            <Image Source="{ex:ImageResource Source=Smartd.Content.Images.click_azul.png}" />
+                        </Grid>
+                        <Label TextColor="#000000" 
+                           Text="Selecione o dia para ver os eventos."
+                           FontSize="13"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"/>
+
+                        <Label TextColor="#000000" 
+                           FontSize="13"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <FormattedString.Spans>
+                                        <Span Text="Datas com "/>
+                                        <Span Text="{Binding Source={x:Static Member=fonts:FontAwesome.circle}}"
+                                          FontFamily="{StaticResource Key=FontAwesomeSolid}"
+                                          TextColor="{StaticResource Key=PrimaryColor}"/>
+                                        <Span Text=" significam que naquele dia você tem uma sessão agendada."/>
+                                    </FormattedString.Spans>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                    </StackLayout>
+
+                    <StackLayout Padding="15,0,15,0" IsVisible="{Binding Path=AgendadoVisible}">
+                        <Label HorizontalTextAlignment="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <FormattedString.Spans>
+                                        <Span Text="{Binding Path=ItemSelecionado.data, StringFormat='{0:d}'}"
+                                          TextColor="#000000"
+                                          FontSize="20"
+                                          FontAttributes="Bold"/>
+                                        <Span Text=" - "
+                                          TextColor="#000000"
+                                          FontSize="20"
+                                          FontAttributes="Bold"/>
+                                        <Span Text="{Binding Path=ItemSelecionado.hora}"
+                                          TextColor="#000000"
+                                          FontSize="20"
+                                          FontAttributes="Bold"/>
+                                    </FormattedString.Spans>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Grid ColumnSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Column="0">
+                                <Grid HorizontalOptions="CenterAndExpand" IsEnabled="{Binding Path=HasProximaSessao}" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="70" />
+                                    </Grid.RowDefinitions>
+                                    <Frame Padding="0" 
+                                           Margin="0" 
+                                           BorderColor="#43ABE2"  
+                                           BackgroundColor="#43ABE2" 
+                                           HasShadow="False" 
+                                           CornerRadius="30">
+                                        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                            <Grid HorizontalOptions="CenterAndExpand">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="50" />
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="{ex:ImageResource Source=Smartd.Content.Images.dish.png}"/>
+                                            </Grid>
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
+                                <Label TextColor="#000000" 
+                                           Text="Escolher&#10;Refeição"
+                                           FontSize="16" 
+                                           HorizontalTextAlignment="Center"/>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Path=cmdRefeicao}"/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1">
+                                <Grid HorizontalOptions="CenterAndExpand" IsEnabled="{Binding Path=HasProximaSessao}" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="70" />
+                                    </Grid.RowDefinitions>
+                                    <Frame Padding="0" 
+                                           Margin="0" 
+                                           BorderColor="#43ABE2"  
+                                           BackgroundColor="#43ABE2" 
+                                           HasShadow="False" 
+                                           CornerRadius="30">
+                                        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                            <Grid HorizontalOptions="CenterAndExpand">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="50" />
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="{ex:ImageResource Source=Smartd.Content.Images.clock.png}"/>
+                                            </Grid>
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
+                                <Label TextColor="#000000" 
+                                           Text="Alterar&#10;Horário"
+                                           FontSize="16" 
+                                           HorizontalTextAlignment="Center"/>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Disponivel"/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Grid>
+
+                    </StackLayout>
+
+                    <StackLayout IsVisible="{Binding Path=DisponivelVisible}"
+                            Padding="15,0,15,0">
+                        <StackLayout Orientation="Horizontal">
+                            <Label HorizontalOptions="StartAndExpand" 
+                            FontSize="16">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <FormattedString.Spans>
+                                            <Span Text=" — "
+                                            TextColor="#43ABE2"/>
+                                            <Span Text="Horários Disponíveis"
+                                            TextColor="#000000"
+                                            FontAttributes="Bold"/>
+                                        </FormattedString.Spans>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="100" />
+                            </Grid.RowDefinitions>
+                            <ScrollView>
+                                <StackLayout BindableLayout.ItemsSource="{Binding Path=Horarios}">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout Orientation="Horizontal">
+                                                <RadioButton IsChecked="{Binding Path=check}"
+                                                         GroupName="Horario"
+                                                         TextColor="#000000"/>
+                                                <Label Text="{Binding Path=horario}"
+                                                   TextColor="#000000"
+                                                   FontSize="16"
+                                                   FontAttributes="Bold"
+                                                   VerticalTextAlignment="Center">
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.cmdSelecionarHorario, Source={x:Reference Name=ctnPage}}" 
+                                                                          CommandParameter="{Binding Path=.}" />
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
+                            </ScrollView>
+                        </Grid>
+                        <Grid HorizontalOptions="CenterAndExpand" Padding="0,0,0,10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="35" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200" />
+                            </Grid.ColumnDefinitions>
+                            <Button Text="Confirmar alteração" 
+                            TextColor="#000000" 
+                            FontSize="13" 
+                            FontAttributes="Bold"
+                            BackgroundColor="#AEDAEB" 
+                            CornerRadius="50" 
+                            Command="{Binding Path=cmdFinalizar}"/>
+                        </Grid>
+
+                    </StackLayout>
+
+                </StackLayout>
+            </ScrollView>
+
+            <ContentView IsVisible="{Binding Path=IsBusy}" 
+                         HorizontalOptions="FillAndExpand" 
+                         VerticalOptions="FillAndExpand">
+                <Frame BackgroundColor="White" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center" 
+                       CornerRadius="10" 
+                       BorderColor="LightGray"
+                       HasShadow="True"
+                       Padding="30">
+                    <StackLayout>
+                        <ActivityIndicator IsRunning="{Binding Path=IsBusy}" 
+                                           IsVisible="{Binding Path=IsBusy}"
+                                           Color="{StaticResource Key=PrimaryColor}"/>
+                        <Label Text="Aguarde" 
+                               FontSize="17" 
+                               HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </Frame>
+            </ContentView>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

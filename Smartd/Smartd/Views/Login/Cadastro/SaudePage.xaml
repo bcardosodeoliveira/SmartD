@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:behaviors="clr-namespace:Smartd.Bibliotecas.Behaviors"
+             xmlns:controls="clr-namespace:Smartd.Bibliotecas.Controls"
+             mc:Ignorable="d"
+             x:Class="Smartd.Views.Login.Cadastro.SaudePage">
+
+    <ContentView.Content>
+        <ScrollView>
+            <StackLayout Spacing="0">
+                <Label Text="Saúde"
+                       TextColor="#000000"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       Margin="0,5,0,10"
+                       HorizontalOptions="Center"/>
+
+                <Label Text="Clínica de seu tratamento"
+                        TextColor="#000000"
+                        FontSize="13"/>
+
+                <Frame Padding="0" 
+                       Margin="0" 
+                       BorderColor="#43ABE2"  
+                       BackgroundColor="#FFFFFF" 
+                       HasShadow="False"
+                       HorizontalOptions="FillAndExpand">
+                    <controls:EntryLight FontSize="13"
+                                         TextColor="#000000"
+                                         ReturnType="Next" 
+                                         Text="{Binding Path=Dados.convenio.Empresa.Value}"
+                                         BackgroundColor="Transparent">
+                        <controls:EntryLight.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                              Command="{Binding Path=cmdValidar}"
+                                                              CommandParameter="{Binding Path=Dados.convenio.Empresa}"/>
+                        </controls:EntryLight.Behaviors>
+                    </controls:EntryLight>
+                </Frame>
+                <Label Text="{Binding Path=Dados.convenio.Empresa.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                       IsVisible="{Binding Path=Dados.convenio.Empresa.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                       Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+
+                <Label Text="Convênio médico"
+                       Margin="0,10,0,0"
+                       TextColor="#000000"
+                       FontSize="13"/>
+
+                <Frame Padding="0" 
+                       Margin="0" 
+                       BorderColor="#43ABE2"  
+                       BackgroundColor="#FFFFFF" 
+                       HasShadow="False"
+                       HorizontalOptions="FillAndExpand">
+                    <controls:EntryLight FontSize="13"
+                                         TextColor="#000000"
+                                         ReturnType="Next" 
+                                         Text="{Binding Path=Dados.convenio.Nome.Value}"
+                                         BackgroundColor="Transparent">
+                        <controls:EntryLight.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                              Command="{Binding Path=cmdValidar}"
+                                                              CommandParameter="{Binding Path=Dados.convenio.Nome}"/>
+                        </controls:EntryLight.Behaviors>
+                    </controls:EntryLight>
+                </Frame>
+                <Label Text="{Binding Path=Dados.convenio.Nome.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                       IsVisible="{Binding Path=Dados.convenio.Nome.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                       Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+
+
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout>
+                        <Label Text="Plano"
+                               TextColor="#000000"
+                               FontSize="13"/>
+
+                        <Frame Padding="0" 
+                               Margin="0" 
+                               BorderColor="#43ABE2"  
+                               BackgroundColor="#FFFFFF" 
+                               HasShadow="False"
+                               HorizontalOptions="FillAndExpand">
+                            <controls:EntryLight FontSize="13"
+                                                 TextColor="#000000"
+                                                 ReturnType="Next" 
+                                                 Text="{Binding Path=Dados.convenio.Plano.Value}"
+                                                 BackgroundColor="Transparent">
+                                <controls:EntryLight.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                                      Command="{Binding Path=cmdValidar}"
+                                                                      CommandParameter="{Binding Path=Dados.convenio.Plano}"/>
+                                </controls:EntryLight.Behaviors>
+                            </controls:EntryLight>
+                        </Frame>
+                        <Label Text="{Binding Path=Dados.convenio.Plano.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                               IsVisible="{Binding Path=Dados.convenio.Plano.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                               Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1">
+                        <Label Text="N. da Carteirinha"
+                               TextColor="#000000"
+                               FontSize="13"/>
+
+                        <Frame Padding="0" 
+                               Margin="0" 
+                               BorderColor="#43ABE2"  
+                               BackgroundColor="#FFFFFF" 
+                               HasShadow="False"
+                               HorizontalOptions="FillAndExpand">
+                            <controls:EntryLight FontSize="13"
+                                                 TextColor="#000000"
+                                                 ReturnType="Done" 
+                                                 Keyboard="Numeric"
+                                                 Text="{Binding Path=Dados.convenio.Nro_carteira.Value}"
+                                                 BackgroundColor="Transparent">
+                                <controls:EntryLight.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                                      Command="{Binding Path=cmdValidar}"
+                                                                      CommandParameter="{Binding Path=Dados.convenio.Nro_carteira}"/>
+                                </controls:EntryLight.Behaviors>
+                            </controls:EntryLight>
+                        </Frame>
+                        <Label Text="{Binding Path=Dados.convenio.Nro_carteira.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                               IsVisible="{Binding Path=Dados.convenio.Nro_carteira.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                               Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

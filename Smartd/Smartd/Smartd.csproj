@@ -1,0 +1,154 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Content\Images\back.png" />
+    <None Remove="Content\Images\background.png" />
+    <None Remove="Content\Images\backgroundcad.png" />
+    <None Remove="Content\Images\backgroundcadinicial.png" />
+    <None Remove="Content\Images\backgroundmenu.png" />
+    <None Remove="Content\Images\calendar.png" />
+    <None Remove="Content\Images\calendar_check.png" />
+    <None Remove="Content\Images\cicle_menu.png" />
+    <None Remove="Content\Images\click.png" />
+    <None Remove="Content\Images\click_azul.png" />
+    <None Remove="Content\Images\clock.png" />
+    <None Remove="Content\Images\clock_refresh.png" />
+    <None Remove="Content\Images\close.png" />
+    <None Remove="Content\Images\dish.png" />
+    <None Remove="Content\Images\down-arrow.png" />
+    <None Remove="Content\Images\left-arrow.png" />
+    <None Remove="Content\Images\like.png" />
+    <None Remove="Content\Images\logo.png" />
+    <None Remove="Content\Images\logocompleto.png" />
+    <None Remove="Content\Images\mail.png" />
+    <None Remove="Content\Images\menu.png" />
+    <None Remove="Content\Images\more.png" />
+    <None Remove="Content\Images\open_menu.png" />
+    <None Remove="Content\Images\password.png" />
+    <None Remove="Content\Images\sos.png" />
+    <None Remove="Content\Images\user.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Images\back.png" />
+    <EmbeddedResource Include="Content\Images\background.png" />
+    <EmbeddedResource Include="Content\Images\backgroundcad.png" />
+    <EmbeddedResource Include="Content\Images\backgroundcadinicial.png" />
+    <EmbeddedResource Include="Content\Images\backgroundmenu.png" />
+    <EmbeddedResource Include="Content\Images\calendar.png" />
+    <EmbeddedResource Include="Content\Images\calendar_check.png" />
+    <EmbeddedResource Include="Content\Images\cicle_menu.png" />
+    <EmbeddedResource Include="Content\Images\click.png" />
+    <EmbeddedResource Include="Content\Images\click_azul.png" />
+    <EmbeddedResource Include="Content\Images\clock.png" />
+    <EmbeddedResource Include="Content\Images\clock_refresh.png" />
+    <EmbeddedResource Include="Content\Images\close.png" />
+    <EmbeddedResource Include="Content\Images\dish.png" />
+    <EmbeddedResource Include="Content\Images\down-arrow.png" />
+    <EmbeddedResource Include="Content\Images\left-arrow.png" />
+    <EmbeddedResource Include="Content\Images\like.png" />
+    <EmbeddedResource Include="Content\Images\logo.png" />
+    <EmbeddedResource Include="Content\Images\logocompleto.png" />
+    <EmbeddedResource Include="Content\Images\mail.png" />
+    <EmbeddedResource Include="Content\Images\menu.png" />
+    <EmbeddedResource Include="Content\Images\more.png" />
+    <EmbeddedResource Include="Content\Images\open_menu.png" />
+    <EmbeddedResource Include="Content\Images\password.png" />
+    <EmbeddedResource Include="Content\Images\sos.png" />
+    <EmbeddedResource Include="Content\Images\user.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.446" />
+    <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
+    <PackageReference Include="refit" Version="5.1.67" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="18.2.0.48" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+    <PackageReference Include="Xam.Plugin.TabView" Version="1.1.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1269" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Xamarin.Forms.BehaviorValidationPack" Version="1.1.1" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.8.0.1269" />
+    <PackageReference Include="XamEffects" Version="1.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\Login\Cadastro\InicioPage.xaml.cs">
+      <DependentUpon>InicioPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Login\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Shared\AlterarHorarioPage.xaml.cs">
+      <DependentUpon>AlterarHorarioPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\Home\IndexPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\LoadingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\Cadastro\ContatoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\Cadastro\DadosPessoaisPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\Cadastro\EnderecoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\Cadastro\IndexPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\Cadastro\SaudePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\Cadastro\SenhaPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\EmailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Shared\AlterarHorarioPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Shared\CalendarioPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Shared\EmergenciaPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Shared\HistoricoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Shared\RefeicaoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

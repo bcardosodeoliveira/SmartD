@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"                  
+                 xmlns:local="clr-namespace:Smartd.Bibliotecas"
+                 xmlns:ex="clr-namespace:Smartd.Bibliotecas.Extensions"
+                 xmlns:controls="clr-namespace:Smartd.Bibliotecas.Controls"
+                 mc:Ignorable="d"
+                 x:Class="Smartd.Views.Shared.RefeicaoPage"
+                 NavigationPage.HasNavigationBar="False"
+                 NavigationPage.HasBackButton="False"
+                 BackgroundColor="#9043ABE2">
+
+    <pages:PopupPage.Content>
+        <Grid Margin="20"
+              VerticalOptions="CenterAndExpand">
+            <ScrollView>
+                <StackLayout>
+                    <Grid HorizontalOptions="End">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{ex:ImageResource Source=Smartd.Content.Images.close.png}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=cmdFechar}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+
+                    <Frame BackgroundColor="#FFFFFF"
+                           CornerRadius="25"
+                           HasShadow="False"
+                           Padding="0">
+                        <StackLayout Padding="10">
+                            <Label Text="Vamos montar a sua refeição"
+                                   TextColor="#000000"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center"/>
+                            <StackLayout IsVisible="{Binding Path=EnviarVisible, Converter={StaticResource inverter}}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40" />
+                                    </Grid.RowDefinitions>
+                                    <controls:PickerLight Title="Selecione o Lanche"
+                                                          TitleColor="#000000"
+                                                          FontSize="16"
+                                                          TextColor="#000000"
+                                                          BackgroundColor="Transparent"
+                                                          HorizontalOptions="Start" 
+                                                          VerticalOptions="Center">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>Pão Francês</x:String>
+                                                <x:String>Pão Francês Integral</x:String>
+                                                <x:String>Ciabata</x:String>
+                                                <x:String>Patê de Ervas</x:String>
+                                                <x:String>Lanche Natural de Frango</x:String>
+                                                <x:String>Lanche Natural de Peito de Peru</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </controls:PickerLight>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40" />
+                                    </Grid.RowDefinitions>
+                                    <controls:PickerLight Title="Selecione o Lanche"
+                                                          TitleColor="#000000"
+                                                          FontSize="16"
+                                                          TextColor="#000000"
+                                                          BackgroundColor="Transparent"
+                                                          HorizontalOptions="Start" 
+                                                          VerticalOptions="Center">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>Pão Francês</x:String>
+                                                <x:String>Pão Francês Integral</x:String>
+                                                <x:String>Ciabata</x:String>
+                                                <x:String>Patê de Ervas</x:String>
+                                                <x:String>Lanche Natural de Frango</x:String>
+                                                <x:String>Lanche Natural de Peito de Peru</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </controls:PickerLight>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40" />
+                                    </Grid.RowDefinitions>
+                                    <controls:PickerLight Title="Selecione o Doce"
+                                                          TitleColor="#000000"
+                                                          FontSize="16"
+                                                          TextColor="#000000"
+                                                          BackgroundColor="Transparent"
+                                                          HorizontalOptions="Start" 
+                                                          VerticalOptions="Center">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>Brownie Low Carb</x:String>
+                                                <x:String>Doce de Banana</x:String>
+                                                <x:String>Gelatina de Morango</x:String>
+                                                <x:String>Barra de Proteina</x:String>
+                                                <x:String>Cookie Fit</x:String>
+                                                <x:String>Bombom</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </controls:PickerLight>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40" />
+                                    </Grid.RowDefinitions>
+                                    <controls:PickerLight Title="Selecione sua Bebida"
+                                                          TitleColor="#000000"
+                                                          FontSize="16"
+                                                          TextColor="#000000"
+                                                          BackgroundColor="Transparent"
+                                                          HorizontalOptions="Start" 
+                                                          VerticalOptions="Center">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>Suco de Maracujá com Couve</x:String>
+                                                <x:String>Suco Verde</x:String>
+                                                <x:String>Suco de Melância</x:String>
+                                                <x:String>Suco de Beterraba com Tomate</x:String>
+                                                <x:String>Coca Cola Zero</x:String>
+                                                <x:String>Shake Fit</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </controls:PickerLight>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40" />
+                                    </Grid.RowDefinitions>
+
+                                    <controls:PickerLight Title="Selecione a Fruta"
+                                                          TitleColor="#000000"
+                                                          FontSize="16"
+                                                          TextColor="#000000"
+                                                          BackgroundColor="Transparent"
+                                                          HorizontalOptions="Start" 
+                                                          VerticalOptions="Center">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>Banana</x:String>
+                                                <x:String>Mamão</x:String>
+                                                <x:String>Melão</x:String>
+                                                <x:String>Melancia</x:String>
+                                                <x:String>Maça</x:String>
+                                                <x:String>Laranja</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </controls:PickerLight>
+                                </Grid>
+
+                                <Button Text="Enviar Cardápio" 
+                                        TextColor="#000000" 
+                                        FontSize="13" 
+                                        FontAttributes="Bold"
+                                        BackgroundColor="#AEDAEB" 
+                                        CornerRadius="20"
+                                        Clicked="Enviar">
+                                </Button>
+                            </StackLayout>
+                            <StackLayout IsVisible="{Binding Path=EnviarVisible}"
+                                         Padding="0,10,0,0"
+                                         Spacing="15">
+                                <Grid HorizontalOptions="CenterAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="{ex:ImageResource Source=Smartd.Content.Images.like.png}"/>
+                                </Grid>
+                                <Label TextColor="#000000"
+                                       FontSize="13"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="CenterAndExpand">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <FormattedString.Spans>
+                                                <Span Text="Recebemos sua escolha de cardápio,"/>
+                                                <Span Text="&#10;"/>
+                                                <Span Text="    quando chegar para a sua sessão,"/>
+                                                <Span Text="&#10;"/>
+                                                <Span Text="    estará tudo pronto te esperando!"/>
+                                            </FormattedString.Spans>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Button Text="Fechar" 
+                                        TextColor="#000000" 
+                                        FontSize="13" 
+                                        FontAttributes="Bold"
+                                        BackgroundColor="#AEDAEB" 
+                                        CornerRadius="20" 
+                                        Command="{Binding Path=cmdFechar}"/>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+
+            <ContentView IsVisible="{Binding Path=IsBusy}" 
+                         HorizontalOptions="FillAndExpand" 
+                         VerticalOptions="FillAndExpand">
+                <Frame BackgroundColor="White" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center" 
+                       CornerRadius="10" 
+                       BorderColor="LightGray"
+                       HasShadow="True"
+                       Padding="30">
+                    <StackLayout>
+                        <ActivityIndicator IsRunning="{Binding Path=IsBusy}" 
+                                           IsVisible="{Binding Path=IsBusy}"
+                                           Color="{StaticResource Key=PrimaryColor}"/>
+                        <Label Text="Aguarde" 
+                               FontSize="17" 
+                               HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </Frame>
+            </ContentView>
+        </Grid>
+    </pages:PopupPage.Content>
+</pages:PopupPage>

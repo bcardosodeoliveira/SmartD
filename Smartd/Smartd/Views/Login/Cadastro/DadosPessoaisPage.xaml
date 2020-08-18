@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:controls="clr-namespace:Smartd.Bibliotecas.Controls"
+             xmlns:behaviors="clr-namespace:Smartd.Bibliotecas.Behaviors"
+             xmlns:behaviorPack="clr-namespace:Xamarin.Forms.BehaviorValidationPack;assembly=Xamarin.Forms.BehaviorValidationPack"
+             mc:Ignorable="d"
+             x:Class="Smartd.Views.Login.Cadastro.DadosPessoaisPage">
+
+    <ContentView.Content>
+        <ScrollView>
+            <StackLayout Spacing="0">
+                <Label Text="Dados Pessoais"
+                       TextColor="#000000"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       Margin="0,5,0,10"
+                       HorizontalOptions="Center"/>
+            
+                <Label Text="Nome Completo"
+                        TextColor="#000000"
+                        FontSize="13"/>
+            
+                <Frame Padding="0" 
+                        Margin="0" 
+                        BorderColor="#43ABE2"  
+                        BackgroundColor="#FFFFFF" 
+                        HasShadow="False"
+                        HorizontalOptions="FillAndExpand">
+                    <controls:EntryLight FontSize="13"
+                                         TextColor="#000000"
+                                         ReturnType="Next" 
+                                         Keyboard="Text"
+                                         Text="{Binding Path=Dados.NomeCompleto.Value}"
+                                         BackgroundColor="Transparent">
+                        <controls:EntryLight.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                              Command="{Binding Path=cmdValidar}"
+                                                              CommandParameter="{Binding Path=Dados.NomeCompleto}"/>
+                        </controls:EntryLight.Behaviors>
+                    </controls:EntryLight>
+                </Frame>
+                <Label Text="{Binding Path=Dados.NomeCompleto.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                       IsVisible="{Binding Path=Dados.NomeCompleto.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                       Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout>
+                        <Label Text="Gênero"
+                               TextColor="#000000"
+                               FontSize="13"/>
+
+                        <Frame Padding="0" 
+                               Margin="0" 
+                               BorderColor="#43ABE2"  
+                               BackgroundColor="#FFFFFF" 
+                               HasShadow="False"
+                               HorizontalOptions="FillAndExpand">
+                            <controls:PickerLight FontSize="13"
+                                                  TextColor="#000000"
+                                                  Margin="2,8"
+                                                  SelectedItem="{Binding Path=Dados.Sexo.Value}"
+                                                  BackgroundColor="Transparent">
+                                <controls:PickerLight.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="SelectedIndexChanged"
+                                                                      Command="{Binding Path=cmdValidar}"
+                                                                      CommandParameter="{Binding Path=Dados.Sexo}"/>
+                                </controls:PickerLight.Behaviors>
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type TypeName=x:String}">
+                                        <x:String>Masculino</x:String>
+                                        <x:String>Feminino</x:String>
+                                        <x:String>Outro</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </controls:PickerLight>
+                        </Frame>
+                        <Label Text="{Binding Path=Dados.Sexo.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                               IsVisible="{Binding Path=Dados.Sexo.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                               Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+                    </StackLayout>
+                
+                    <StackLayout Grid.Column="1">
+                        <Label Text="Data de Nascimento"
+                               TextColor="#000000"
+                               FontSize="13"/>
+
+                        <Frame Padding="0" 
+                               Margin="0" 
+                               BorderColor="#43ABE2"  
+                               BackgroundColor="#FFFFFF" 
+                               HasShadow="False"
+                               HorizontalOptions="FillAndExpand">
+                            <controls:NullableDatePicker Format="dd/MM/yyyy" 
+                                                         Margin="0,0,0,1"
+                                                         IsLight="True"
+                                                         NullableDate="{Binding Path=Dados.DataNascimento.Value}"
+                                                         PlaceHolder="''"
+                                                         FontSize="13"
+                                                         TextColor="#000000"
+                                                         BackgroundColor="Transparent">
+                                <controls:NullableDatePicker.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="DateSelected"
+                                                                      Command="{Binding Path=cmdValidar}"
+                                                                      CommandParameter="{Binding Path=Dados.DataNascimento}"/>
+                                </controls:NullableDatePicker.Behaviors>
+                            </controls:NullableDatePicker>
+                        </Frame>
+                        <Label Text="{Binding Path=Dados.DataNascimento.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                               IsVisible="{Binding Path=Dados.DataNascimento.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                               Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+                    </StackLayout>
+                </Grid>
+
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout>
+                        <Label Text="CPF"
+                               TextColor="#000000"
+                               FontSize="13"/>
+
+                        <Frame Padding="0" 
+                               Margin="0" 
+                               BorderColor="#43ABE2"  
+                               BackgroundColor="#FFFFFF" 
+                               HasShadow="False"
+                               HorizontalOptions="FillAndExpand">
+                            <controls:EntryLight FontSize="13"
+                                                 TextColor="#000000"
+                                                 ReturnType="Next" 
+                                                 Text="{Binding Path=Dados.CPF.Value}"
+                                                 Keyboard="Numeric"
+                                                 BackgroundColor="Transparent">
+                                <controls:EntryLight.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                                      Command="{Binding Path=cmdValidar}"
+                                                                      CommandParameter="{Binding Path=Dados.CPF}"/>
+                                    <behaviorPack:MaskedBehavior Mask="XXX.XXX.XXX-XX" />
+                                </controls:EntryLight.Behaviors>
+                            </controls:EntryLight>
+                        </Frame>
+                        <Label Text="{Binding Path=Dados.CPF.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                               IsVisible="{Binding Path=Dados.CPF.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                               Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1">
+                        <Label Text="RG"
+                               TextColor="#000000"
+                               FontSize="13"/>
+
+                        <Frame Padding="0" 
+                               Margin="0" 
+                               BorderColor="#43ABE2"  
+                               BackgroundColor="#FFFFFF" 
+                               HasShadow="False"
+                               HorizontalOptions="FillAndExpand">
+                            <controls:EntryLight FontSize="13"
+                                                 TextColor="#000000"
+                                                 ReturnType="Next" 
+                                                 Keyboard="Numeric"
+                                                 Text="{Binding Path=Dados.rg.Numero.Value}"
+                                                 BackgroundColor="Transparent">
+                                <controls:EntryLight.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                                      Command="{Binding Path=cmdValidar}"
+                                                                      CommandParameter="{Binding Path=Dados.rg.Numero}"/>
+                                </controls:EntryLight.Behaviors>
+                            </controls:EntryLight>
+                        </Frame>
+                        <Label Text="{Binding Path=Dados.rg.Numero.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                               IsVisible="{Binding Path=Dados.rg.Numero.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                               Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+                    </StackLayout>
+                </Grid>
+            
+                <Label Text="Nome Completo da Mãe"
+                       TextColor="#000000"
+                       Margin="0,10,0,0"
+                       FontSize="13"/>
+            
+                <Frame Padding="0" 
+                       Margin="0" 
+                       BorderColor="#43ABE2"  
+                       BackgroundColor="#FFFFFF" 
+                       HasShadow="False"
+                       HorizontalOptions="FillAndExpand">
+                    <controls:EntryLight FontSize="13"
+                                         Text="{Binding Path=Dados.NomeMae.Value}"
+                                         TextColor="#000000"
+                                         ReturnType="Done" 
+                                         Keyboard="Text"
+                                         BackgroundColor="Transparent">
+                        <controls:EntryLight.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                              Command="{Binding Path=cmdValidar}"
+                                                              CommandParameter="{Binding Path=Dados.NomeMae}"/>
+                        </controls:EntryLight.Behaviors>
+                    </controls:EntryLight>
+                </Frame>
+                <Label Text="{Binding Path=Dados.NomeMae.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                       IsVisible="{Binding Path=Dados.NomeMae.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                       Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+            
+            
+                <Label Text="Etinia"
+                       TextColor="#000000"
+                       Margin="0,10,0,0"
+                       FontSize="13"/>
+            
+                <Frame Padding="0" 
+                        Margin="0" 
+                        BorderColor="#43ABE2"  
+                        BackgroundColor="#FFFFFF" 
+                        HasShadow="False">
+                    <controls:PickerLight FontSize="13"
+                                          TextColor="#000000"
+                                          SelectedItem="{Binding Path=Dados.Etnia.Value}"
+                                          Margin="2,8"
+                                          BackgroundColor="Transparent">
+                        <controls:PickerLight.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="SelectedIndexChanged"
+                                                              Command="{Binding Path=cmdValidar}"
+                                                              CommandParameter="{Binding Path=Dados.Etnia}"/>
+                        </controls:PickerLight.Behaviors>
+                        <controls:PickerLight.ItemsSource>
+                            <x:Array Type="{x:Type TypeName=x:String}">
+                                <x:String>Negro</x:String>
+                                <x:String>Branco</x:String>
+                                <x:String>Oriental</x:String>
+                                <x:String>Indigena</x:String>
+                                <x:String>Mulato</x:String>
+                                <x:String>Pardo</x:String>
+                            </x:Array>
+                        </controls:PickerLight.ItemsSource>
+                    </controls:PickerLight>
+                </Frame>
+                <Label Text="{Binding Path=Dados.Etnia.Errors, Converter={StaticResource Key=firstValidationErrorConverter}}" 
+                       IsVisible="{Binding Path=Dados.Etnia.Errors, Converter={StaticResource Key=hasErrorsConverter}}"
+                       Style="{StaticResource Key=ValidationErrorLabelStyle}"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>    
